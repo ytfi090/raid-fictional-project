@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>R.A.I.D. - Home</title>
   <style>
+    /* ---- Global Fade-in on load ---- */
     body {
       font-family: Arial, sans-serif;
       background: #121212;
@@ -12,12 +13,25 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
     }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ---- Logo with pulsing glow ---- */
     .logo {
       margin-top: 30px;
       max-width: 200px;
       height: auto;
+      animation: pulseGlow 2.5s infinite alternate;
     }
+    @keyframes pulseGlow {
+      from { filter: drop-shadow(0 0 5px #00bfff); }
+      to { filter: drop-shadow(0 0 20px #00bfff); }
+    }
+
     h1 {
       margin-top: 10px;
       font-size: 2em;
@@ -25,6 +39,8 @@
     p {
       margin: 10px 0;
     }
+
+    /* ---- Button container ---- */
     .button-container {
       margin-top: 40px;
       display: flex;
@@ -32,7 +48,10 @@
       align-items: center;
       gap: 15px;
     }
+
+    /* ---- Nav Buttons ---- */
     .nav-button {
+      position: relative;
       display: inline-block;
       padding: 15px 30px;
       background: #1e1e1e;
@@ -42,13 +61,30 @@
       font-size: 1.1em;
       font-weight: bold;
       width: 220px;
-      transition: background 0.3s, transform 0.3s;
       border: 2px solid #444;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
     }
     .nav-button:hover {
       background: #333;
       transform: scale(1.05);
+      box-shadow: 0 0 15px #00bfff, 0 0 25px #00bfff inset;
     }
+    /* Animated underline */
+    .nav-button::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      background: #00bfff;
+      transition: width 0.3s ease;
+    }
+    .nav-button:hover::after {
+      width: 100%;
+    }
+
     footer {
       margin-top: 50px;
       padding: 15px;

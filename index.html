@@ -29,26 +29,27 @@
       from { filter: drop-shadow(0 0 5px #00bfff); }
       to { filter: drop-shadow(0 0 20px #00bfff); }
     }
+    
+  h1 {
+  margin-top: 10px;
+  font-size: 2em;
+  white-space: nowrap;
+  border-right: 3px solid #00bfff;
+  width: 0;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+}
 
-    h1 {
-      margin-top: 10px;
-      font-size: 2em;
-      white-space: nowrap;
-      border-right: 3px solid #00bfff;
-      width: 0;
-      overflow: hidden;
-      margin-left: auto;
-      margin-right: auto;
-      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
-    }
+@keyframes typing {
+  from { width: 0 }
+  to { width: 340px; } /* now wide enough for the entire heading */
+}
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 280px; } /* adjust width to fit your text */
-    }
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
+@keyframes blink {
+  50% { border-color: transparent }
+}
 
     p {
       margin: 10px 0;

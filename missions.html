@@ -1,32 +1,80 @@
-<h1>Missions</h1>
-<p>Chat live with other R.A.I.D. members below! No account needed.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missions - R.A.I.D.</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 30px;
+      font-size: 2em;
+    }
+    p {
+      font-size: 1.1em;
+      max-width: 600px;
+      margin: 10px auto;
+      line-height: 1.6;
+    }
+    .chat-container {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Missions</h1>
+  <p>Chat live with other R.A.I.D. members below! No account is needed. Share ideas, plan missions, and have fun together.</p>
 
-<!-- Chatango Embed -->
-<script id="cid0020000413809613552" data-cfasync="false" async 
-  src="//st.chatango.com/js/gz/emb.js" 
-  style="width: 200px;height: 300px;">
-  {"handle":"raid-community",
-   "arch":"js",
-   "styles":{
-     "a":"CC0000",
-     "b":100,
-     "c":"FFFFFF",
-     "d":"FFFFFF",
-     "k":"CC0000",
-     "l":"CC0000",
-     "m":"CC0000",
-     "n":"FFFFFF",
-     "p":"10",
-     "q":"CC0000",
-     "r":100,
-     "pos":"br",
-     "cv":1,
-     "cvbg":"CC0000",
-     "cvw":200,
-     "cvh":30,
-     "ticker":1,
-     "fwtickm":1
-   }}
-</script>
+  <div class="chat-container">
+    <!-- Chatango Embed -->
+    <script id="cid0020000413809613552" data-cfasync="false" async 
+      src="//st.chatango.com/js/gz/emb.js" 
+      style="width: 350px; height: 500px;">
+      {
+        "handle":"raid-community",
+        "arch":"js",
+        "styles":{
+          "a":"000000",    /* Background of messages */
+          "b":100,
+          "c":"FFFFFF",    /* Text color */
+          "d":"222222",    /* Input background */
+          "k":"444444",    /* Timestamp color */
+          "l":"444444",    /* Links color */
+          "m":"000000",    /* Background of member list */
+          "n":"FFFFFF",    /* Name color */
+          "p":"10",
+          "q":"555555",    /* Border color */
+          "r":100,
+          "pos":"br",
+          "cv":1,
+          "cvbg":"222222",
+          "cvw":350,
+          "cvh":40,
+          "ticker":1,
+          "fwtickm":1
+        }
+      }
+    </script>
+  </div>
 
-<p style="margin-top:30px;"><a href="index.html">⬅ Back to Home</a></p>
+  <p style="margin-top: 30px;">
+    <a href="index.html">⬅ Back to Home</a>
+  </p>
+</body>
+</html>

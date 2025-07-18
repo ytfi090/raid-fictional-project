@@ -17,8 +17,28 @@
       padding: 20px;
       text-align: center;
     }
+    nav {
+      background: #333;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 5px 10px;
+      padding: 8px 12px;
+      background: #444;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #555;
+    }
     main {
       padding: 20px;
+      text-align: center;
     }
     footer {
       margin-top: 40px;
@@ -28,13 +48,6 @@
       color: #555;
       text-align: center;
     }
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
@@ -43,15 +56,26 @@
     <p>A fictional storytelling project</p>
   </header>
 
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="ranks.html">Ranks</a>
+    <a href="missions.html">Missions</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
   <main>
-    <h2>Home</h2>
+    <h2>Home Page</h2>
     <p>
-      This is the homepage for R.A.I.D., a world‑building and creative project.
-      You can explore different sections of our fictional universe.
+      Welcome to the official site of R.A.I.D. This is a creative, fictional world‑building project.
+      Use the navigation buttons above to explore:
     </p>
-    <p>
-      <a href="ranks.html">View Ranks</a>
-    </p>
+    <ul style="list-style: none; padding: 0;">
+      <li><a href="ranks.html">📜 View Ranks</a></li>
+      <li><a href="missions.html">🎯 Explore Missions</a></li>
+      <li><a href="about.html">ℹ️ Learn About Us</a></li>
+      <li><a href="contact.html">✉️ Contact</a></li>
+    </ul>
   </main>
 
   <footer>

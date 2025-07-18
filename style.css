@@ -1,1 +1,152 @@
+/* ====== Global Styles ====== */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #121212; /* dark background */
+  color: #ffffff;
+  text-align: center;
+}
 
+.container {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ====== Logo ====== */
+.logo {
+  display: block;
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto 20px auto;
+}
+
+/* ====== Headings ====== */
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #ffd700; /* gold accent */
+}
+
+h2, h3 {
+  color: #f4d03f;
+}
+
+/* ====== Navigation ====== */
+nav {
+  margin-top: 30px;
+}
+
+nav a {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #000;
+  background: #ffd700;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+nav a:hover {
+  background: #e6c200;
+}
+
+/* ====== Scroll Hint ====== */
+.scroll-hint {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #ccc;
+}
+
+.scroll-hint .arrow {
+  font-size: 40px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ====== Search Page ====== */
+input#searchInput {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  width: 260px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #ffd700;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #e6c200;
+}
+
+.results-box {
+  margin-top: 30px;
+  text-align: left;
+}
+
+/* ====== Member Result Cards ====== */
+.member-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.member-card h3 {
+  margin-top: 0;
+  color: #ffd700;
+}
+
+.member-card p {
+  margin: 4px 0;
+}
+
+/* ====== Ranks Page ====== */
+.ranks-container {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.ranks-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.rank-block {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.rank-block h3 {
+  margin-top: 0;
+  color: #ffd700;
+}
+
+/* ====== Credits Page ====== */
+.credits-container {
+  margin-top: 40px;
+}
+
+.credits-container p {
+  font-size: 18px;
+  margin: 10px 0;
+}

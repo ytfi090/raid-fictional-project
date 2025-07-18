@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>R.A.I.D. - Home</title>
   <style>
+    /* Fade-in on load */
     body {
       font-family: Arial, sans-serif;
       background: #121212;
@@ -19,6 +20,7 @@
       to { opacity: 1; }
     }
 
+    /* Logo with glow animation */
     .logo {
       margin-top: 30px;
       max-width: 200px;
@@ -29,32 +31,32 @@
       from { filter: drop-shadow(0 0 5px #00bfff); }
       to { filter: drop-shadow(0 0 20px #00bfff); }
     }
-    
-  h1 {
-  margin-top: 10px;
-  font-size: 2em;
-  white-space: nowrap;
-  border-right: 3px solid #00bfff;
-  width: 0;
-  overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
-}
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 340px; } /* now wide enough for the entire heading */
-}
-
-@keyframes blink {
-  50% { border-color: transparent }
-}
+    /* Typewriter effect for heading */
+    h1 {
+      margin-top: 10px;
+      font-size: 2em;
+      white-space: nowrap;
+      border-right: 3px solid #00bfff;
+      width: 0;
+      overflow: hidden;
+      margin-left: auto;
+      margin-right: auto;
+      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 340px; } /* wide enough for full text */
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
 
     p {
       margin: 10px 0;
     }
 
+    /* Buttons */
     .button-container {
       margin-top: 40px;
       display: flex;
@@ -113,9 +115,8 @@
   <!-- Logo -->
   <img src="raid-logo.PNG" alt="R.A.I.D. Logo" class="logo">
 
-  <!-- Typewriter Heading -->
+  <!-- Typewriter heading -->
   <h1>Welcome to R.A.I.D.</h1>
-
   <p>A fictional storytelling and world‑building project</p>
 
   <!-- Buttons -->
@@ -126,6 +127,7 @@
     <a href="contact.html" class="nav-button">Contact</a>
     <a href="search.html" class="nav-button">Search for Members</a>
     <a href="rules.html" class="nav-button">Rulebook</a>
+    <a href="news.html" class="nav-button">Newsfeed</a>
   </div>
 
   <!-- Disclaimer -->

@@ -1,0 +1,70 @@
+<script>
+  // Surahs currently uploaded
+  const surahs = [
+    { name: "As-Sajdah (32)", file: "quran/as-sajdah.mp3" },
+    { name: "Ya-Sin (36)", file: "quran/ya-sin.mp3" },
+    { name: "Ar-Rahman (55)", file: "quran/ar-rahman.mp3" },
+    { name: "Al-Mulk (67)", file: "quran/al-mulk.mp3" },
+    { name: "An-Naba (78)", file: "quran/an-naba.mp3" },
+    { name: "Al-Ikhlas (112)", file: "quran/al-ikhlas.mp3" },
+    { name: "Al-Falaq (113)", file: "quran/al-falaq.mp3" },
+    { name: "An-Nas (114)", file: "quran/an-nas.mp3" }
+  ];
+
+  const select = document.getElementById('surahSelect');
+  const player = document.getElementById('audioPlayer');
+  const progressBar = document.getElementById('progress');
+  let currentIndex = 0;
+
+  // Populate dropdown
+  surahs.forEach((s, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = s.name;
+    select.appendChild(opt);
+  });
+
+  function loadSurah(index) {
+    currentIndex = index;
+    player.src = surahs[index].file;
+    player.play();
+    select.value = index;
+  }
+
+  function togglePlay() {
+    if (!player.src) {
+      loadSurah(currentIndex);
+      return;
+    }
+    if (player.paused) player.play();
+    else player.pause();
+  }
+
+  function nextSurah() {
+    currentIndex = (currentIndex + 1) % surahs.length;
+    loadSurah(currentIndex);
+  }
+
+  function prevSurah() {
+    currentIndex = (currentIndex - 1 + surahs.length) % surahs.length;
+    loadSurah(currentIndex);
+  }
+
+  select.addEventListener('change', () => {
+    loadSurah(parseInt(select.value));
+  });
+
+  player.addEventListener('timeupdate', () => {
+    if (player.duration) {
+      const percent = (player.currentTime / player.duration) * 100;
+      progressBar.style.width = percent + '%';
+    }
+  });
+
+  player.addEventListener('ended', () => {
+    nextSurah();
+  });
+
+  // Load the first surah by default
+  loadSurah(0);
+</script>

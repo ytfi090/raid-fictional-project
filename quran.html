@@ -1,6 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quran Playlist</title>
+<style>
+  body {
+    background: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    margin-top: 10px;
+    font-size: 2em;
+  }
+  select, button {
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+  }
+  select {
+    width: 220px;
+  }
+  button {
+    background: #1e1e1e;
+    color: #fff;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #333;
+  }
+  #progress-container {
+    margin: 20px auto;
+    width: 80%;
+    background: #333;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  #progress {
+    height: 100%;
+    width: 0%;
+    background: #0af;
+  }
+  audio { display: none; }
+  a.back {
+    display: inline-block;
+    margin-top: 30px;
+    color: #0af;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<h1>📖 Quran Playlist</h1>
+<p>Select a Surah to play:</p>
+
+<select id="surahSelect"></select>
+
+<div>
+  <button onclick="prevSurah()">⏮️ Prev</button>
+  <button onclick="togglePlay()">⏯️ Play/Pause</button>
+  <button onclick="nextSurah()">⏭️ Next</button>
+</div>
+
+<div id="progress-container">
+  <div id="progress"></div>
+</div>
+
+<audio id="audioPlayer"></audio>
+
+<a href="index.html" class="back">← Back to Home</a>
+
 <script>
-  // Surahs currently uploaded
- const surahs = [
+const surahs = [
   { name: "Al-Fatiha (1)", file: "quran/001-al-fatiha.mp3" },
   { name: "As-Sajdah (32)", file: "quran/as-sajdah.mp3" },
   { name: "Ar-Rahman (55)", file: "quran/ar-rahman.mp3" },
@@ -11,60 +91,63 @@
   { name: "An-Nas (114)", file: "quran/an-nas.mp3" }
 ];
 
-  const select = document.getElementById('surahSelect');
-  const player = document.getElementById('audioPlayer');
-  const progressBar = document.getElementById('progress');
-  let currentIndex = 0;
+const select = document.getElementById('surahSelect');
+const player = document.getElementById('audioPlayer');
+const progressBar = document.getElementById('progress');
+let currentIndex = 0;
 
-  // Populate dropdown
-  surahs.forEach((s, i) => {
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = s.name;
-    select.appendChild(opt);
-  });
+// populate dropdown
+surahs.forEach((s, i) => {
+  const opt = document.createElement('option');
+  opt.value = i;
+  opt.textContent = s.name;
+  select.appendChild(opt);
+});
 
-  function loadSurah(index) {
-    currentIndex = index;
-    player.src = surahs[index].file;
-    player.play();
-    select.value = index;
-  }
+function loadSurah(index) {
+  currentIndex = index;
+  player.src = surahs[index].file;
+  player.play();
+  select.value = index;
+}
 
-  function togglePlay() {
-    if (!player.src) {
-      loadSurah(currentIndex);
-      return;
-    }
-    if (player.paused) player.play();
-    else player.pause();
-  }
-
-  function nextSurah() {
-    currentIndex = (currentIndex + 1) % surahs.length;
+function togglePlay() {
+  if (!player.src) {
     loadSurah(currentIndex);
+    return;
   }
+  if (player.paused) player.play();
+  else player.pause();
+}
 
-  function prevSurah() {
-    currentIndex = (currentIndex - 1 + surahs.length) % surahs.length;
-    loadSurah(currentIndex);
+function nextSurah() {
+  currentIndex = (currentIndex + 1) % surahs.length;
+  loadSurah(currentIndex);
+}
+
+function prevSurah() {
+  currentIndex = (currentIndex - 1 + surahs.length) % surahs.length;
+  loadSurah(currentIndex);
+}
+
+select.addEventListener('change', () => {
+  loadSurah(parseInt(select.value));
+});
+
+player.addEventListener('timeupdate', () => {
+  if (player.duration) {
+    const percent = (player.currentTime / player.duration) * 100;
+    progressBar.style.width = percent + '%';
   }
+});
 
-  select.addEventListener('change', () => {
-    loadSurah(parseInt(select.value));
-  });
+player.addEventListener('ended', () => {
+  nextSurah();
+});
 
-  player.addEventListener('timeupdate', () => {
-    if (player.duration) {
-      const percent = (player.currentTime / player.duration) * 100;
-      progressBar.style.width = percent + '%';
-    }
-  });
-
-  player.addEventListener('ended', () => {
-    nextSurah();
-  });
-
-  // Load the first surah by default
-  loadSurah(0);
+// start with first surah
+loadSurah(0);
 </script>
+
+</body>
+</html>

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>R.A.I.D. - Home</title>
   <style>
-    /* Fade-in on load */
     body {
       font-family: Arial, sans-serif;
       background: #121212;
@@ -13,59 +12,29 @@
       margin: 0;
       padding: 0;
       text-align: center;
-      opacity: 0;
-      animation: fadeIn 1s ease-in forwards;
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* Logo with glow animation */
     .logo {
       margin-top: 30px;
       max-width: 200px;
       height: auto;
-      animation: pulseGlow 2.5s infinite alternate;
     }
-    @keyframes pulseGlow {
-      from { filter: drop-shadow(0 0 5px #00bfff); }
-      to { filter: drop-shadow(0 0 20px #00bfff); }
-    }
-
-    /* Typewriter effect for heading */
     h1 {
       margin-top: 10px;
       font-size: 2em;
-      white-space: nowrap;
-      border-right: 3px solid #00bfff;
-      width: 0;
-      overflow: hidden;
-      margin-left: auto;
-      margin-right: auto;
-      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
     }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 340px; } /* wide enough for full text */
-    }
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
-
     p {
-      margin: 10px 0;
+      margin-top: 10px;
+      font-size: 1em;
     }
-
-    /* Buttons */
     .button-container {
       margin-top: 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
+      padding: 0 20px;
     }
     .nav-button {
-      position: relative;
       display: inline-block;
       padding: 15px 30px;
       background: #1e1e1e;
@@ -75,27 +44,40 @@
       font-size: 1.1em;
       font-weight: bold;
       width: 220px;
+      transition: background 0.3s, transform 0.3s;
       border: 2px solid #444;
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-      overflow: hidden;
+      text-align: center;
     }
     .nav-button:hover {
       background: #333;
       transform: scale(1.05);
-      box-shadow: 0 0 15px #00bfff, 0 0 25px #00bfff inset;
     }
-    .nav-button::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 3px;
-      background: #00bfff;
-      transition: width 0.3s ease;
+
+    /* Responsive layout for iPads and Macs */
+    @media (min-width: 768px) {
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        justify-items: center;
+        gap: 20px;
+        max-width: 800px;
+        margin: 40px auto;
+      }
+      .nav-button {
+        width: 100%;
+        max-width: 220px;
+      }
     }
-    .nav-button:hover::after {
-      width: 100%;
+
+    @media (min-width: 1200px) {
+      .button-container {
+        gap: 25px;
+        max-width: 1000px;
+      }
+      .nav-button {
+        font-size: 1.2em;
+        padding: 18px 30px;
+      }
     }
 
     footer {
@@ -105,17 +87,12 @@
       font-size: 0.85em;
       color: #bbb;
     }
-    footer p {
-      margin: 0;
-      padding: 0 10px;
-    }
   </style>
 </head>
 <body>
   <!-- Logo -->
   <img src="raid-logo.PNG" alt="R.A.I.D. Logo" class="logo">
 
-  <!-- Typewriter heading -->
   <h1>Welcome to R.A.I.D.</h1>
   <p>A fictional storytelling and world‑building project</p>
 
@@ -128,6 +105,8 @@
     <a href="search.html" class="nav-button">Search for Members</a>
     <a href="rules.html" class="nav-button">Rulebook</a>
     <a href="news.html" class="nav-button">Newsfeed</a>
+    <a href="music.html" class="nav-button">🎵 Music Player</a>
+    <a href="quran.html" class="nav-button">📖 Quran Playlist</a>
   </div>
 
   <!-- Disclaimer -->

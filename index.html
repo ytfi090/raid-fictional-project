@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>R.A.I.D. - Home</title>
   <style>
-    /* ---- Global Fade-in on load ---- */
     body {
       font-family: Arial, sans-serif;
       background: #121212;
@@ -20,7 +19,6 @@
       to { opacity: 1; }
     }
 
-    /* ---- Logo with pulsing glow ---- */
     .logo {
       margin-top: 30px;
       max-width: 200px;
@@ -35,12 +33,27 @@
     h1 {
       margin-top: 10px;
       font-size: 2em;
+      white-space: nowrap;
+      border-right: 3px solid #00bfff;
+      width: 0;
+      overflow: hidden;
+      margin-left: auto;
+      margin-right: auto;
+      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
     }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 280px; } /* adjust width to fit your text */
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
     p {
       margin: 10px 0;
     }
 
-    /* ---- Button container ---- */
     .button-container {
       margin-top: 40px;
       display: flex;
@@ -48,8 +61,6 @@
       align-items: center;
       gap: 15px;
     }
-
-    /* ---- Nav Buttons ---- */
     .nav-button {
       position: relative;
       display: inline-block;
@@ -70,7 +81,6 @@
       transform: scale(1.05);
       box-shadow: 0 0 15px #00bfff, 0 0 25px #00bfff inset;
     }
-    /* Animated underline */
     .nav-button::after {
       content: "";
       position: absolute;
@@ -102,7 +112,9 @@
   <!-- Logo -->
   <img src="raid-logo.PNG" alt="R.A.I.D. Logo" class="logo">
 
+  <!-- Typewriter Heading -->
   <h1>Welcome to R.A.I.D.</h1>
+
   <p>A fictional storytelling and world‑building project</p>
 
   <!-- Buttons -->

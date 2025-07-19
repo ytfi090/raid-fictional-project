@@ -1,159 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ranks – R.A.I.D.</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>R.A.I.D. Official Ranks</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 <style>
   body {
-    margin: 0;
-    padding: 0;
+    margin:0;
+    padding:0;
     font-family: Arial, sans-serif;
-    color: #fff;
     background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
     background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite, fadeInBody 1s ease forwards;
-    opacity: 0;
-    text-align: center;
+    animation: gradientBG 12s ease infinite;
+    color:#fff;
   }
-
-  @keyframes fadeInBody {
-    to { opacity: 1; }
-  }
-
   @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
   }
-
-  h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5em;
-    margin-top: 30px;
-    text-shadow: 0 0 15px #fff, 0 0 30px #38ef7d, 0 0 45px #38ef7d;
-    animation: pulseGlow 2s infinite alternate;
+  header {
+    text-align:center;
+    padding:30px 20px 10px;
   }
-
-  @keyframes pulseGlow {
-    from { text-shadow: 0 0 10px #fff, 0 0 20px #38ef7d; }
-    to { text-shadow: 0 0 20px #fff, 0 0 40px #38ef7d; }
+  header h1 {
+    font-family:'Orbitron',sans-serif;
+    font-size:2.5em;
+    margin:0;
+    text-shadow:0 0 15px #fff, 0 0 30px #38ef7d, 0 0 45px #38ef7d;
   }
-
-  p {
-    max-width: 800px;
-    margin: 15px auto 40px;
-    font-size: 1.1em;
-    line-height: 1.6;
+  header p {
+    max-width:700px;
+    margin:10px auto;
+    font-size:1.1em;
   }
-
-  .rank-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+  .search-box {
+    text-align:center;
+    margin:20px;
   }
-
-  .rank-item {
+  .search-box input {
+    padding:10px;
+    width:300px;
+    border-radius:6px;
+    border:none;
+    outline:none;
+    font-size:1em;
+  }
+  .accordion {
+    max-width:900px;
+    margin:20px auto;
+  }
+  .accordion-item {
     background: rgba(255,255,255,0.05);
-    border: 2px solid rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 12px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    position: relative;
-    will-change: transform;
+    border:1px solid rgba(255,255,255,0.1);
+    margin-bottom:10px;
+    border-radius:8px;
+    overflow:hidden;
   }
-
-  .rank-item h2 {
-    font-family: 'Orbitron', sans-serif;
-    margin-top: 0;
-    font-size: 1.3em;
-    margin-bottom: 10px;
+  .accordion-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    cursor:pointer;
+    font-family:'Orbitron',sans-serif;
+    font-size:1.1em;
+    background: rgba(0,0,0,0.4);
   }
-
-  .rank-item p {
-    font-size: 0.95em;
-    margin: 0;
+  .accordion-header:hover {
+    background: rgba(255,255,255,0.1);
   }
-
-  .back-home {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 12px 25px;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b);
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: all 0.3s ease-in-out;
+  .accordion-header span.emoji {
+    font-size:1.3em;
+    margin-right:10px;
   }
-  .back-home:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+  .accordion-content {
+    display:none;
+    padding:15px;
+    font-size:0.95em;
+    line-height:1.6;
+    background: rgba(0,0,0,0.3);
   }
-
+  .accordion-item.active .accordion-content {
+    display:block;
+  }
+  a.back-home {
+    display:inline-block;
+    margin:40px auto;
+    text-align:center;
+    background: linear-gradient(45deg,#ff416c,#ff4b2b);
+    padding:12px 25px;
+    color:#fff;
+    text-decoration:none;
+    border-radius:6px;
+    font-weight:bold;
+    transition:all 0.3s ease-in-out;
+  }
+  a.back-home:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(255,255,255,0.3);
+  }
   footer {
-    margin-top: 50px;
-    padding: 15px;
-    background: rgba(26,26,26,0.8);
-    font-size: 0.85em;
-    color: #bbb;
-  }
-  @media (min-width: 768px) {
-    footer {
-      position: fixed;
-      right: 0;
-      bottom: 20px;
-      width: 250px;
-      text-align: left;
-      background: rgba(26,26,26,0.7);
-      padding: 10px;
-      border-radius: 8px 0 0 8px;
-      box-shadow: -3px 0 10px rgba(255,255,255,0.3);
-    }
+    text-align:center;
+    padding:20px;
+    font-size:0.8em;
+    color:#ccc;
   }
 </style>
 </head>
 <body>
-  <h1>📝 R.A.I.D. Ranks</h1>
-  <p>Every member of R.A.I.D. serves a purpose. Here is what each rank represents:</p>
 
-  <div class="rank-list">
-    <div class="rank-item"><h2>🜲 Founder</h2><p>The supreme leader of R.A.I.D. Sets the vision, approves missions, and oversees all departments. The Founder’s word is final.</p></div>
-    <div class="rank-item"><h2>✯ High Commander</h2><p>Second‑in‑command. Directs large operations, coordinates between divisions, and ensures the Founder’s plans are executed.</p></div>
-    <div class="rank-item"><h2>⚔️ Field Commander</h2><p>Leads missions in the field. Handles tactical decisions, manages squads, and reports directly to the High Commander.</p></div>
-    <div class="rank-item"><h2>🛡️ Defense Operative</h2><p>Specialists in defense and protection. Safeguard members, secure assets, and fortify positions during missions.</p></div>
-    <div class="rank-item"><h2>🔍 Intelligence Officer</h2><p>Masters of gathering intel. Track enemy movements, collect useful information, and feed critical data to leadership.</p></div>
-    <div class="rank-item"><h2>📡 Recruiter</h2><p>Trusted individuals who scout and recruit new potential members. They evaluate loyalty, skills, and ensure secrecy is maintained.</p></div>
-    <div class="rank-item"><h2>⚙️ Operatives</h2><p>The backbone of R.A.I.D. Carry out missions, support commanders, and maintain the reputation of the organization through their actions.</p></div>
-    <div class="rank-item"><h2>🎖️ Recruits</h2><p>New members in training. Learn the ways of R.A.I.D., prove loyalty, and work toward promotion into higher ranks.</p></div>
+<header>
+  <h1>📝 R.A.I.D. Official Ranks</h1>
+  <p>Every member of R.A.I.D. serves a purpose. Browse through the ranks below, search, and click to reveal details.</p>
+</header>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search rank...">
+</div>
+
+<div class="accordion" id="rankAccordion">
+
+  <!-- Overwatch -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">👁️</span>Overwatch (Founder – Rehan)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Command Core<br>
+      • Create the vision and missions for R.A.I.D.<br>
+      • Approve all major decisions and promotions.<br>
+      • Stay hidden within other groups (like C.O.M.P.) to gather intel.<br>
+      • Give orders to the Iron Vanguard and oversee every operation.<br>
+      • Final authority in disputes and discipline.
+    </div>
   </div>
 
-  <a class="back-home" href="index.html">⬅ Back to Home</a>
+  <!-- Iron Vanguard -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">🛡️</span>Iron Vanguard (Second‑in‑Command – Thaahir)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Command Core<br>
+      • Directly commands squads and missions.<br>
+      • Enforces the code of R.A.I.D. daily.<br>
+      • Takes charge when Overwatch is observing from the shadows.<br>
+      • Helps train and guide other members.<br>
+      • Reports mission status and problems to Overwatch.
+    </div>
+  </div>
 
-  <footer>
-    <p><strong>Disclaimer:</strong> This project, including R.A.I.D. and all related content, is <em>entirely fictional</em>. It is a creative storytelling and world‑building project. It does not represent any real organization, group, or activity.</p>
-  </footer>
+  <!-- Field Marshal -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">⚔️</span>Field Marshal (Currently Vacant)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Command Core<br>
+      • Tactical coordinator during missions.<br>
+      • Leads large operations involving multiple squads.<br>
+      • Oversees Elite Operatives (Shieldbearer, Edge Handler, Eyes, Gatekeeper).
+    </div>
+  </div>
+
+  <!-- Shieldbearer -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">⚡</span>Shieldbearer (Frontline Lead – Talal)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Elite Operatives<br>
+      • Leads defense and protection during missions.<br>
+      • Organizes squads of Night Operatives.<br>
+      • Handles conflicts directly when aggression is needed.<br>
+      • Trains Initiates in discipline and defense skills.
+    </div>
+  </div>
+
+  <!-- Edge Handler -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">🔰</span>Edge Handler (Specialist – Karas)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Elite Operatives<br>
+      • Assigned to special tasks (support, planning, tech, or small missions).<br>
+      • Executes missions that require precision but not command.<br>
+      • Works closely under orders from the Iron Vanguard or Field Marshal.<br>
+      • Keeps a low profile to avoid suspicion.
+    </div>
+  </div>
+
+  <!-- Eyes -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">🧭</span>Eyes of R.A.I.D. (Intelligence Chief – Mahdi)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Elite Operatives<br>
+      • Gathers information quietly from many sources.<br>
+      • Warns R.A.I.D. about threats or changes.<br>
+      • Monitors enemy activity without being noticed.<br>
+      • Shares intel directly with Overwatch and Iron Vanguard.
+    </div>
+  </div>
+
+  <!-- Gatekeeper -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">🤝</span>Gatekeeper (Recruiter – Zayne Anzil)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Elite Operatives<br>
+      • Watches potential recruits silently.<br>
+      • Tests their loyalty with small tasks or situations.<br>
+      • Recommends Initiates to Overwatch and Iron Vanguard.<br>
+      • Guides Initiates through their first steps and the oath.
+    </div>
+  </div>
+
+  <!-- Peacemaker -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">✌️</span>Peacemaker (Currently Vacant)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Elite Operatives<br>
+      • Creates peace between fellow members.<br>
+      • Breaks up fights when necessary between the R.A.I.D. family.<br>
+      • Overlooks all the communication sources and creates peace.<br>
+      • Keeps important data and assets stored safely.
+    </div>
+  </div>
+
+  <!-- Lawyer -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">👮‍♂️</span>Lawyer (Currently Vacant)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Elite Operatives<br>
+      • Proofreads the articles created by the Overwatch.<br>
+      • Spreads rumors to rival teams.<br>
+      • Infiltration of enemy bases.<br>
+      • Informs the Command Core team when important things happen.
+    </div>
+  </div>
+
+  <!-- Night Operative -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">🪶</span>Night Operative (Standard Soldier)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Core Soldiers<br>
+      • Carry out missions assigned by higher ranks.<br>
+      • Follow the R.A.I.D. code strictly.<br>
+      • Support Shieldbearers, Edge Handlers, and Eyes in their tasks.<br>
+      • Train regularly to rise in rank.
+    </div>
+  </div>
+
+  <!-- Initiate -->
+  <div class="accordion-item">
+    <div class="accordion-header"><span class="emoji">🌑</span>Initiate (Recruit in Training)</div>
+    <div class="accordion-content">
+      <strong>Tier:</strong> Recruits<br>
+      • Learn the R.A.I.D. oath and rules.<br>
+      • Prove loyalty through small assignments.<br>
+      • Stay under close observation by the Gatekeeper and other ranks.<br>
+      • Await promotion to Night Operative once trusted.
+    </div>
+  </div>
+
+</div>
+
+<a class="back-home" href="index.html">⬅ Back to Home</a>
+
+<footer>
+  <p><strong>Disclaimer:</strong> R.A.I.D. and its content are entirely fictional, for creative storytelling and world‑building.</p>
+</footer>
 
 <script>
-  // Magnetic hover effect
-  const items = document.querySelectorAll('.rank-item');
-
-  items.forEach(item => {
-    item.addEventListener('mousemove', (e) => {
-      const rect = item.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      item.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
+  // Accordion toggle
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.parentElement.classList.toggle('active');
     });
+  });
 
-    item.addEventListener('mouseleave', () => {
-      item.style.transform = 'translate(0,0)';
+  // Search filter
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', function(){
+    const filter = this.value.toLowerCase();
+    document.querySelectorAll('.accordion-item').forEach(item=>{
+      const text = item.querySelector('.accordion-header').innerText.toLowerCase();
+      item.style.display = text.includes(filter) ? '' : 'none';
     });
   });
 </script>
+
 </body>
 </html>

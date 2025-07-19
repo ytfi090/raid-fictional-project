@@ -3,17 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R.A.I.D. Badges</title>
+<title>R.A.I.D. Badges Search</title>
 <style>
 body {
   background:#222;
   font-family:Arial, sans-serif;
+  margin:0;
+  padding:0;
+  color:#fff;
+}
+header {
+  text-align:center;
+  padding:20px;
+}
+input[type="text"] {
+  padding:10px 15px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  width:300px;
+  background:#111;
+  color:#fff;
+  font-size:1em;
+  margin-bottom:20px;
+}
+.container {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:20px;
   padding:20px;
 }
+
+/* your original badge styling */
 .badge {
   width:350px;
   height:550px;
@@ -24,6 +46,13 @@ body {
   overflow:hidden;
   box-shadow:0 0 20px rgba(0,0,0,0.6);
   padding:20px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+}
+.badge.show {
+  opacity:1;
+  transform:translateY(0);
 }
 .badge::before {
   content:"";
@@ -95,8 +124,15 @@ body {
 </head>
 <body>
 
+<header>
+  <h1>🔎 Search R.A.I.D. Badges</h1>
+  <input type="text" id="searchInput" placeholder="Type to search badges...">
+</header>
+
+<div class="container" id="badgeContainer">
+
 <!-- Overwatch -->
-<div class="badge command-core">
+<div class="badge command-core" data-search="overwatch founder rehan omega5 r0001">
   <div class="top-section">
     <div class="logo-icon">👁️</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div>
@@ -117,7 +153,7 @@ body {
 </div>
 
 <!-- Iron Vanguard -->
-<div class="badge command-core">
+<div class="badge command-core" data-search="iron vanguard thaahir omega4 r0002">
   <div class="top-section">
     <div class="logo-icon">🛡️</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div>
@@ -138,7 +174,7 @@ body {
 </div>
 
 <!-- Field Marshal -->
-<div class="badge command-core">
+<div class="badge command-core" data-search="field marshal vacant omega3 r0003">
   <div class="top-section">
     <div class="logo-icon">⚔️</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div>
@@ -159,7 +195,7 @@ body {
 </div>
 
 <!-- Shieldbearer -->
-<div class="badge elite-op">
+<div class="badge elite-op" data-search="shieldbearer talal alpha2 r0004">
   <div class="top-section">
     <div class="logo-icon">⚡</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div>
@@ -180,7 +216,7 @@ body {
 </div>
 
 <!-- Edge Handler -->
-<div class="badge elite-op">
+<div class="badge elite-op" data-search="edge handler karas alpha1 r0005">
   <div class="top-section">
     <div class="logo-icon">🔰</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div>
@@ -201,7 +237,7 @@ body {
 </div>
 
 <!-- Eyes of R.A.I.D. -->
-<div class="badge elite-op">
+<div class="badge elite-op" data-search="eyes intelligence mahdi beta3 r0006">
   <div class="top-section">
     <div class="logo-icon">🧭</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div>
@@ -222,7 +258,7 @@ body {
 </div>
 
 <!-- Gatekeeper -->
-<div class="badge elite-op">
+<div class="badge elite-op" data-search="gatekeeper zayne anzil beta2 r0007">
   <div class="top-section">
     <div class="logo-icon">🤝</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div>
@@ -243,7 +279,7 @@ body {
 </div>
 
 <!-- Peacemaker -->
-<div class="badge elite-op">
+<div class="badge elite-op" data-search="peacemaker vacant beta1 r0008">
   <div class="top-section">
     <div class="logo-icon">✌️</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div>
@@ -264,7 +300,7 @@ body {
 </div>
 
 <!-- Lawyer -->
-<div class="badge elite-op">
+<div class="badge elite-op" data-search="lawyer vacant beta0 r0009">
   <div class="top-section">
     <div class="logo-icon">👮‍♂️</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div>
@@ -285,7 +321,7 @@ body {
 </div>
 
 <!-- Night Operative -->
-<div class="badge core-soldier">
+<div class="badge core-soldier" data-search="night operative soldier delta1 r0010">
   <div class="top-section">
     <div class="logo-icon">🪶</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Core Soldier</div>
@@ -306,7 +342,7 @@ body {
 </div>
 
 <!-- Initiate -->
-<div class="badge recruit">
+<div class="badge recruit" data-search="initiate recruit omega0 r0011">
   <div class="top-section">
     <div class="logo-icon">🌑</div>
     <div class="logo-text"><strong>R.A.I.D.</strong><br>Recruit</div>
@@ -326,5 +362,16 @@ body {
   <div class="slogan">LEARN. PROVE. RISE.</div>
 </div>
 
-</body>
-</html>
+</div>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const badges = document.querySelectorAll('.badge');
+
+function filterBadges() {
+  const term = searchInput.value.toLowerCase();
+  badges.forEach(badge => {
+    const content = badge.getAttribute('data-search').toLowerCase();
+    if (content.includes(term)) {
+      badge.style.display = 'block';
+      setTimeout(() => badge.classList.add('show'), 10

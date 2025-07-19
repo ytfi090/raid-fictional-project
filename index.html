@@ -15,7 +15,6 @@
       background-size: 400% 400%;
       animation: gradientMove 15s ease infinite;
     }
-
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -79,7 +78,7 @@
       border-radius: 8px;
       font-size: 1.1em;
       font-weight: bold;
-      width: 220px;
+      width: 250px;
       transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
       border: 2px solid #444;
       text-align: center;
@@ -87,11 +86,10 @@
       transform: translateY(20px);
       animation: fadeInUp 0.6s forwards;
     }
-
     .nav-button:hover {
       background: #333;
       transform: scale(1.05);
-      box-shadow: 0 0 15px #ff4d4d, 0 0 30px #ff4d4d;
+      box-shadow: 0 0 15px #ff4d4d, 0 0 30px #ff8080;
     }
 
     @keyframes fadeInUp {
@@ -110,22 +108,86 @@
     .nav-button:nth-child(7) { animation-delay: 1.4s; }
     .nav-button:nth-child(8) { animation-delay: 1.6s; }
     .nav-button:nth-child(9) { animation-delay: 1.8s; }
-    .nav-button:nth-child(10) { animation-delay: 2s; }
 
-    /* Responsive layout */
-    @media (min-width: 768px) {
-      .button-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        justify-items: center;
-        gap: 20px;
-        max-width: 900px;
-        margin: 40px auto;
-      }
-      .nav-button {
-        width: 100%;
-        max-width: 220px;
-      }
+    /* Fancy gradient text styles for each button */
+    .fancy-red {
+      background: linear-gradient(90deg, #ff4d4d, #ff8080);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255, 77, 77, 0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-blue {
+      background: linear-gradient(90deg, #4db8ff, #80d4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(77,184,255,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-gold {
+      background: linear-gradient(90deg, #ffd700, #ffb347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255,215,0,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-green {
+      background: linear-gradient(90deg, #00ff99, #33ffcc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(0,255,153,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-purple {
+      background: linear-gradient(90deg, #bf00ff, #e066ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(191,0,255,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-orange {
+      background: linear-gradient(90deg, #ff6600, #ff944d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255,102,0,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-cyan {
+      background: linear-gradient(90deg, #00ffff, #66ffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(0,255,255,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-silver {
+      background: linear-gradient(90deg, #e0e0e0, #a6a6a6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(200,200,200,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    .fancy-rainbow {
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbowMove 4s linear infinite;
+      text-shadow: 0 0 8px rgba(255,255,255,0.6);
+      font-family: 'Courier New', monospace;
+    }
+    @keyframes rainbowMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     footer {
@@ -146,15 +208,15 @@
 
   <!-- Buttons -->
   <div class="button-container">
-    <a href="ranks.html" class="nav-button">📝 𝓡𝓐𝓝𝓚𝓢</a>
-    <a href="missions.html" class="nav-button">📱 Missions</a>
-    <a href="about.html" class="nav-button"> 🦅 About R.A.I.D.</a>
-    <a href="contact.html" class="nav-button">📩 Contact</a>
-    <a href="search.html" class="nav-button"> 🔍 Search for Members</a>
-    <a href="rules.html" class="nav-button">📖 Rulebook</a>
-    <a href="news.html" class="nav-button">📰 Newsfeed</a>
-    <a href="secret.html" class="nav-button">🔐 ONLY COMMAND CORE</a>
-    <a href="quran.html" class="nav-button">📖 Quran Playlist</a>
+    <a href="ranks.html" class="nav-button"><span class="fancy-red">📝 𝓡𝓐𝓝𝓚𝓢</span></a>
+    <a href="missions.html" class="nav-button"><span class="fancy-blue">📱 Missions</span></a>
+    <a href="about.html" class="nav-button"><span class="fancy-gold">🦅 About R.A.I.D.</span></a>
+    <a href="contact.html" class="nav-button"><span class="fancy-green">📩 Contact</span></a>
+    <a href="search.html" class="nav-button"><span class="fancy-purple">🔍 Search for Members</span></a>
+    <a href="rules.html" class="nav-button"><span class="fancy-orange">📖 Rulebook</span></a>
+    <a href="news.html" class="nav-button"><span class="fancy-cyan">📰 Newsfeed</span></a>
+    <a href="secret.html" class="nav-button"><span class="fancy-silver">🔐 ONLY COMMAND CORE</span></a>
+    <a href="quran.html" class="nav-button"><span class="fancy-rainbow">📖 Quran Playlist</span></a>
   </div>
 
   <!-- Disclaimer -->

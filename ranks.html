@@ -1,10 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ranks – R.A.I.D.</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranks – R.A.I.D.</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    animation: fadeIn 1.2s ease forwards;
+  }
+
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.4em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff4b2b, 0 0 30px #ff416c;
+    animation: pulseGlow 2s infinite alternate;
+  }
+
+  @keyframes pulseGlow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4b2b, 0 0 30px #ff416c; }
+    to { text-shadow: 0 0 20px #fff, 0 0 40px #ff4b2b, 0 0 60px #ff416c; }
+  }
+
+  p {
+    font-size: 1em;
+    margin-bottom: 30px;
+  }
+
+  .rank-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .rank-list {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+  }
+
+  .rank-item {
+    background: rgba(0,0,0,0.4);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .rank-item:nth-child(1) { animation-delay: 0.1s; }
+  .rank-item:nth-child(2) { animation-delay: 0.2s; }
+  .rank-item:nth-child(3) { animation-delay: 0.3s; }
+  .rank-item:nth-child(4) { animation-delay: 0.4s; }
+  .rank-item:nth-child(5) { animation-delay: 0.5s; }
+  .rank-item:nth-child(6) { animation-delay: 0.6s; }
+  .rank-item:nth-child(7) { animation-delay: 0.7s; }
+  .rank-item:nth-child(8) { animation-delay: 0.8s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .rank-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+  }
+
+  .rank-item h2 {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+  }
+
+  .back-home {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg,#11998e,#38ef7d);
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    transition: all 0.3s ease-in-out;
+  }
+  .back-home:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+  }
+
+  footer {
+    margin-top: 50px;
+    padding: 15px;
+    background: rgba(26,26,26,0.8);
+    font-size: 0.85em;
+    color: #bbb;
+    box-shadow: 0 -2px 10px rgba(255,255,255,0.2);
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    footer {
+      position: fixed;
+      right: 0;
+      bottom: 20px;
+      width: 250px;
+      text-align: left;
+      background: rgba(26,26,26,0.7);
+      padding: 10px;
+      border-radius: 8px 0 0 8px;
+      box-shadow: -3px 0 10px rgba(255,255,255,0.3);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
 </head>
 <body>
   <div class="container">
@@ -12,50 +150,45 @@
     <p>Every member of R.A.I.D. serves a purpose. Here is what each rank represents:</p>
 
     <div class="rank-list">
-
       <div class="rank-item">
         <h2>🜲 Founder</h2>
         <p>The supreme leader of R.A.I.D. Sets the vision, approves missions, and oversees all departments. The Founder’s word is final.</p>
       </div>
-
       <div class="rank-item">
         <h2>✯ High Commander</h2>
         <p>Second‑in‑command. Directs large operations, coordinates between divisions, and ensures the Founder’s plans are executed.</p>
       </div>
-
       <div class="rank-item">
         <h2>⚔️ Field Commander</h2>
         <p>Leads missions in the field. Handles tactical decisions, manages squads, and reports directly to the High Commander.</p>
       </div>
-
       <div class="rank-item">
         <h2>🛡️ Defense Operative</h2>
         <p>Specialists in defense and protection. Safeguard members, secure assets, and fortify positions during missions.</p>
       </div>
-
       <div class="rank-item">
         <h2>🔍 Intelligence Officer</h2>
         <p>Masters of gathering intel. Track enemy movements, collect useful information, and feed critical data to leadership.</p>
       </div>
-
       <div class="rank-item">
         <h2>📡 Recruiter</h2>
         <p>Trusted individuals who scout and recruit new potential members. They evaluate loyalty, skills, and ensure secrecy is maintained.</p>
       </div>
-
       <div class="rank-item">
         <h2>⚙️ Operatives</h2>
         <p>The backbone of R.A.I.D. Carry out missions, support commanders, and maintain the reputation of the organization through their actions.</p>
       </div>
-
       <div class="rank-item">
         <h2>🎖️ Recruits</h2>
         <p>New members in training. Learn the ways of R.A.I.D., prove loyalty, and work toward promotion into higher ranks.</p>
       </div>
-
     </div>
 
     <a class="back-home" href="index.html">← Back to Home</a>
   </div>
+
+  <footer>
+    <p><strong>Disclaimer:</strong> This project, including R.A.I.D. and all related content, is <em>entirely fictional</em>. It is a creative storytelling and world‑building project. It does not represent any real organization, group, or activity.</p>
+  </footer>
 </body>
 </html>

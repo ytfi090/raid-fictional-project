@@ -7,33 +7,69 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #121212;
-      color: #ffffff;
       margin: 0;
       padding: 0;
       text-align: center;
+      color: #ffffff;
+      background: linear-gradient(-45deg, #121212, #1a1a1a, #121212, #000000);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
     }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .logo {
       margin-top: 30px;
       max-width: 200px;
       height: auto;
+      animation: pulse 2s infinite;
     }
+    @keyframes pulse {
+      0% { filter: drop-shadow(0 0 0px #ff4d4d); }
+      50% { filter: drop-shadow(0 0 15px #ff4d4d); }
+      100% { filter: drop-shadow(0 0 0px #ff4d4d); }
+    }
+
     h1 {
       margin-top: 10px;
       font-size: 2em;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #ff4d4d;
+      width: 0;
+      margin-left: auto;
+      margin-right: auto;
+      animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
     }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 15ch; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
     p {
       margin-top: 10px;
       font-size: 1em;
     }
+
     .button-container {
       margin-top: 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      padding: 0 20px;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,77,77,0.3);
     }
+
     .nav-button {
       display: inline-block;
       padding: 15px 30px;
@@ -44,72 +80,51 @@
       font-size: 1.1em;
       font-weight: bold;
       width: 220px;
-      transition: background 0.3s, transform 0.3s;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
       border: 2px solid #444;
       text-align: center;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeUp 0.6s forwards;
+      animation: fadeInUp 0.6s forwards;
     }
+
     .nav-button:hover {
       background: #333;
       transform: scale(1.05);
+      box-shadow: 0 0 15px #ff4d4d, 0 0 30px #ff4d4d;
     }
 
-    /* Special style for ONLY COMMAND CORE */
-    .nav-button.special {
-      background: #b30000;
-      border-color: #ff4d4d;
-      box-shadow: 0 0 10px #ff4d4d;
-    }
-    .nav-button.special:hover {
-      background: #ff4d4d;
-      transform: scale(1.08);
-    }
-
-    /* Staggered delays for entrance animation */
-    .button-container a:nth-child(1) { animation-delay: 0.1s; }
-    .button-container a:nth-child(2) { animation-delay: 0.2s; }
-    .button-container a:nth-child(3) { animation-delay: 0.3s; }
-    .button-container a:nth-child(4) { animation-delay: 0.4s; }
-    .button-container a:nth-child(5) { animation-delay: 0.5s; }
-    .button-container a:nth-child(6) { animation-delay: 0.6s; }
-    .button-container a:nth-child(7) { animation-delay: 0.7s; }
-    .button-container a:nth-child(8) { animation-delay: 0.8s; }
-    .button-container a:nth-child(9) { animation-delay: 0.9s; }
-    .button-container a:nth-child(10) { animation-delay: 1.0s; }
-
-    @keyframes fadeUp {
+    @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    /* Responsive layout for iPads and Macs */
+    .nav-button:nth-child(1) { animation-delay: 0.2s; }
+    .nav-button:nth-child(2) { animation-delay: 0.4s; }
+    .nav-button:nth-child(3) { animation-delay: 0.6s; }
+    .nav-button:nth-child(4) { animation-delay: 0.8s; }
+    .nav-button:nth-child(5) { animation-delay: 1s; }
+    .nav-button:nth-child(6) { animation-delay: 1.2s; }
+    .nav-button:nth-child(7) { animation-delay: 1.4s; }
+    .nav-button:nth-child(8) { animation-delay: 1.6s; }
+    .nav-button:nth-child(9) { animation-delay: 1.8s; }
+    .nav-button:nth-child(10) { animation-delay: 2s; }
+
+    /* Responsive layout */
     @media (min-width: 768px) {
       .button-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         justify-items: center;
         gap: 20px;
-        max-width: 800px;
+        max-width: 900px;
         margin: 40px auto;
       }
       .nav-button {
         width: 100%;
         max-width: 220px;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .button-container {
-        gap: 25px;
-        max-width: 1000px;
-      }
-      .nav-button {
-        font-size: 1.2em;
-        padding: 18px 30px;
       }
     }
 
@@ -131,15 +146,14 @@
 
   <!-- Buttons -->
   <div class="button-container">
-    <a href="ranks.html" class="nav-button">Ranks</a>
-    <a href="missions.html" class="nav-button">Missions</a>
-    <a href="about.html" class="nav-button">About R.A.I.D.</a>
-    <a href="contact.html" class="nav-button">Contact</a>
-    <a href="search.html" class="nav-button">Search for Members</a>
-    <a href="rules.html" class="nav-button">Rulebook</a>
-    <a href="news.html" class="nav-button">Newsfeed</a>
-    <a href="secret.html" class="nav-button special">ONLY COMMAND CORE</a>
-    <a href="music.html" class="nav-button">🎵 Music Player</a>
+    <a href="ranks.html" class="nav-button">📝 𝓡𝓐𝓝𝓚𝓢</a>
+    <a href="missions.html" class="nav-button">📱 Missions</a>
+    <a href="about.html" class="nav-button"> 🦅 About R.A.I.D.</a>
+    <a href="contact.html" class="nav-button">📩 Contact</a>
+    <a href="search.html" class="nav-button"> 🔍 Search for Members</a>
+    <a href="rules.html" class="nav-button">📖 Rulebook</a>
+    <a href="news.html" class="nav-button">📰 Newsfeed</a>
+    <a href="secret.html" class="nav-button">🔐 ONLY COMMAND CORE</a>
     <a href="quran.html" class="nav-button">📖 Quran Playlist</a>
   </div>
 

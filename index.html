@@ -1,135 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R.A.I.D. - Home</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    .logo {
-      margin-top: 30px;
-      max-width: 200px;
-      height: auto;
-    }
-    h1 {
-      margin-top: 10px;
-      font-size: 2em;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: .15em solid #fff; /* cursor effect */
-    }
-    p {
-      margin-top: 10px;
-      font-size: 1em;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R.A.I.D. - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #ffffff;
+    background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    overflow-x: hidden;
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
+  /* Pulsing logo */
+  .logo {
+    margin-top: 30px;
+    max-width: 200px;
+    height: auto;
+    animation: pulse 2s infinite;
+    transition: transform 0.3s ease-in-out;
+  }
+  .logo:hover { transform: rotate(10deg) scale(1.1); }
+  @keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255,255,255,0.6); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+  }
+
+  /* Typewriter */
+  h1 {
+    margin-top: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.3em;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff4b2b, 0 0 30px #ff416c;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid #fff;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 1em;
+    text-shadow: 0 0 5px rgba(255,255,255,0.3);
+  }
+
+  .button-container {
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 350px;
+    padding: 0 10px;
+  }
+  @media (min-width: 768px) {
     .button-container {
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
-      max-width: 350px;
-      padding: 0 10px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      max-width: 800px;
+      gap: 20px;
     }
+  }
+  @media (min-width: 1200px) {
+    .button-container {
+      max-width: 1000px;
+      gap: 25px;
+    }
+  }
 
-    @media (min-width: 768px) {
-      .button-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        max-width: 800px;
-        gap: 20px;
-      }
-    }
+  .nav-button {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding: 15px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  }
+  .nav-button:hover {
+    transform: scale(1.08) rotate(-1deg);
+    box-shadow: 0 0 25px 8px rgba(255,255,255,0.4);
+  }
+  .nav-button:active {
+    transform: scale(0.95);
+  }
 
-    @media (min-width: 1200px) {
-      .button-container {
-        max-width: 1000px;
-        gap: 25px;
-      }
-    }
+  /* Gradients */
+  .btn-ranks { background: linear-gradient(45deg,#ff416c,#ff4b2b); }
+  .btn-missions { background: linear-gradient(45deg,#1e3c72,#2a5298); }
+  .btn-about { background: linear-gradient(45deg,#11998e,#38ef7d); }
+  .btn-contact { background: linear-gradient(45deg,#ee0979,#ff6a00); }
+  .btn-search { background: linear-gradient(45deg,#f7971e,#ffd200); color:#000; }
+  .btn-rules { background: linear-gradient(45deg,#8360c3,#2ebf91); }
+  .btn-news { background: linear-gradient(45deg,#fc4a1a,#f7b733); }
+  .btn-secret { background: linear-gradient(45deg,#414345,#232526); }
+  .btn-quran { background: linear-gradient(45deg,#373B44,#4286f4); }
 
-    .nav-button {
-      display: inline-block;
-      padding: 15px 20px;
-      background: #1e1e1e;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1.1em;
-      font-weight: bold;
-      border: 2px solid #444;
-      text-align: center;
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    .nav-button:hover {
-      background: #333;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
-    }
+  footer {
+    margin-top: 50px;
+    padding: 15px;
+    background: rgba(26,26,26,0.8);
+    font-size: 0.85em;
+    color: #bbb;
+    box-shadow: 0 -2px 10px rgba(255,255,255,0.2);
+  }
+  footer:hover {
+    box-shadow: 0 -2px 25px rgba(255,255,255,0.5);
+    transition: box-shadow 0.3s ease-in-out;
+  }
 
-    footer {
-      margin-top: 50px;
-      padding: 15px;
-      background: #1a1a1a;
-      font-size: 0.85em;
-      color: #bbb;
-    }
-  </style>
+  /* Loader */
+  #loader {
+    position: fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:#000;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+    font-family: 'Orbitron', sans-serif;
+  }
+  #loader.hidden {
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 1s ease-out;
+  }
+</style>
 </head>
 <body>
-  <!-- Logo -->
-  <img src="raid-logo.PNG" alt="R.A.I.D. Logo" class="logo">
 
-  <!-- Typewriter heading -->
-  <h1 id="typewriter"></h1>
-  <p>A fictional storytelling and world‑building project</p>
+<div id="loader">
+  <h2>🔄 Initializing R.A.I.D. Systems...</h2>
+  <p>Loading, please wait...</p>
+</div>
 
-  <!-- Buttons -->
-  <div class="button-container">
-    <a href="ranks.html" class="nav-button">📝 𝓡𝓐𝓝𝓚𝓢</a>
-    <a href="missions.html" class="nav-button">📱 Missions</a>
-    <a href="about.html" class="nav-button">🦅 About R.A.I.D.</a>
-    <a href="contact.html" class="nav-button">📩 Contact</a>
-    <a href="search.html" class="nav-button">🔍 Search for Members</a>
-    <a href="rules.html" class="nav-button">📖 Rulebook</a>
-    <a href="news.html" class="nav-button">📰 Newsfeed</a>
-    <a href="secret.html" class="nav-button">🔐 ONLY COMMAND CORE</a>
-    <a href="quran.html" class="nav-button">📖 Quran Playlist</a>
-  </div>
+<img src="raid-logo.PNG" alt="R.A.I.D. Logo" class="logo">
+<h1 id="typewriter"></h1>
+<p>A fictional storytelling and world‑building project</p>
 
-  <!-- Disclaimer -->
-  <footer>
-    <p>
-      <strong>Disclaimer:</strong> This project, including R.A.I.D. and all related content, is
-      <em>entirely fictional</em>. It is a creative storytelling and world‑building project.
-      It does not represent any real organization, group, or activity.
-    </p>
-  </footer>
+<div class="button-container">
+  <a href="ranks.html" class="nav-button btn-ranks">📝 𝓡𝓐𝓝𝓚𝓢</a>
+  <a href="missions.html" class="nav-button btn-missions">📱 Missions</a>
+  <a href="about.html" class="nav-button btn-about">🦅 About R.A.I.D.</a>
+  <a href="contact.html" class="nav-button btn-contact">📩 Contact</a>
+  <a href="search.html" class="nav-button btn-search">🔍 Search for Members</a>
+  <a href="rules.html" class="nav-button btn-rules">📖 Rulebook</a>
+  <a href="news.html" class="nav-button btn-news">📰 Newsfeed</a>
+  <a href="secret.html" class="nav-button btn-secret">🔐 ONLY COMMAND CORE</a>
+  <a href="quran.html" class="nav-button btn-quran">📖 Quran Playlist</a>
+</div>
 
-  <!-- Typewriter Script -->
-  <script>
-    const text = "Welcome to R.A.I.D.";
-    let index = 0;
-    const speed = 150; // typing speed
-    const target = document.getElementById("typewriter");
+<footer>
+  <p>
+    <strong>Disclaimer:</strong> This project, including R.A.I.D. and all related content, is
+    <em>entirely fictional</em>. It is a creative storytelling and world‑building project.
+    It does not represent any real organization, group, or activity.
+  </p>
+</footer>
 
-    function type() {
-      if (index < text.length) {
-        target.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, speed);
-      } else {
-        // Optional: stop cursor blinking
-        target.style.borderRight = 'none';
-      }
+<script>
+  // Loader
+  window.addEventListener('load',()=>{
+    setTimeout(()=> {
+      document.getElementById('loader').classList.add('hidden');
+    },1500);
+  });
+
+  // Typewriter with typing sound
+  const text = "Welcome to R.A.I.D.";
+  let index = 0;
+  const speed = 150;
+  const target = document.getElementById("typewriter");
+  const audio = new Audio("https://www.soundjay.com/button/sounds/button-16.mp3");
+  function type() {
+    if (index < text.length) {
+      target.textContent += text.charAt(index);
+      audio.currentTime = 0;
+      audio.play();
+      index++;
+      setTimeout(type, speed);
+    } else {
+      target.style.borderRight = 'none';
     }
-    type();
-  </script>
+  }
+  type();
+</script>
+
 </body>
 </html>

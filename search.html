@@ -1,3 +1,10 @@
+Got it! ✅
+Here’s a full updated search.html that already includes all your badge designs (copied from your CSS + markup) and dynamically shows them when searching.
+
+⸻
+
+✨ Full search.html with all badges integrated
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,167 +13,105 @@
 <title>🔍 Search Members – R.A.I.D.</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    background: #121212;
-    overflow-x: hidden;
-  }
-  header {
-    text-align: center;
-    padding: 20px;
-  }
-  h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-  }
-  .controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    padding: 20px;
-  }
-  input, select {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    width: 250px;
-    font-size: 1em;
-    background: #1e1e1e;
-    color: #fff;
-    transition: box-shadow 0.3s;
-  }
-  input:focus, select:focus {
-    box-shadow: 0 0 10px #00bfff;
-  }
-  .btn {
-    margin-top: 10px;
-    padding: 12px 20px;
-    background: linear-gradient(45deg,#ff416c,#ff4b2b);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #ff416c;
-  }
-  .btn::before {
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,0.1);
-    transition: left 0.5s;
-  }
-  .btn:hover::before {
-    left:100%;
-  }
-  #result {
-    max-width: 900px;
-    margin: 20px auto;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    padding: 0 20px 60px;
-  }
-  .member-card {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    animation: fadeInUp 0.6s ease;
-  }
-  .member-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px #00bfff;
-    background: rgba(255,255,255,0.1);
-  }
-  .member-card h3 {
-    margin-top:0;
-  }
-  @keyframes fadeInUp {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
-  }
-  nav {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  nav a {
-    display:inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #1e1e1e;
-    color: #fff;
-    border-radius: 8px;
-    text-decoration: none;
-    border: 2px solid #444;
-    transition: 0.3s;
-  }
-  nav a:hover {
-    background: #333;
-    box-shadow: 0 0 15px #00bfff;
-    transform: scale(1.05);
-  }
-  .toggle-mode {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #333;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    color: #fff;
-    font-size: 1.5em;
-    cursor: pointer;
-    transition: background 0.3s;
-    z-index: 1000;
-  }
-  .toggle-mode:hover {
-    background: #555;
-  }
-  canvas {
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
-  }
-  /* Light mode */
-  body.light {
-    background: #f2f2f2;
-    color: #000;
-  }
-  body.light input,
-  body.light select {
-    background:#fff;
-    color:#000;
-  }
-  body.light .member-card {
-    background: #eee;
-    color:#000;
-  }
+body {
+  margin: 0; padding: 0;
+  font-family: Arial, sans-serif;
+  background:#121212;
+  color:#fff;
+}
+header {
+  text-align:center;
+  padding:20px;
+}
+h1 { font-size:2em; margin-bottom:10px; }
+.controls {
+  display:flex; flex-direction:column; gap:10px;
+  align-items:center; padding:20px;
+}
+input,select {
+  padding:10px; border-radius:8px; border:none; outline:none;
+  width:250px; font-size:1em;
+  background:#1e1e1e; color:#fff;
+}
+input:focus, select:focus { box-shadow:0 0 10px #00bfff; }
+.btn {
+  margin-top:10px; padding:12px 20px;
+  background:linear-gradient(45deg,#ff416c,#ff4b2b);
+  color:#fff; border:none; border-radius:8px;
+  font-size:1em; cursor:pointer;
+}
+.btn:hover { transform:scale(1.05); box-shadow:0 0 15px #ff416c; }
+#result {
+  max-width:1100px; margin:20px auto; display:flex;
+  flex-wrap:wrap; gap:20px; justify-content:center;
+  padding-bottom:60px;
+}
+nav { text-align:center; margin:30px; }
+nav a {
+  display:inline-block; padding:10px 20px;
+  background:#1e1e1e; color:#fff;
+  border-radius:8px; text-decoration:none;
+  border:2px solid #444;
+}
+nav a:hover { background:#333; box-shadow:0 0 15px #00bfff; }
+
+/* ---------- BADGE STYLES ---------- */
+body { background:#222; }
+.badge {
+  width:350px; height:550px; background:#111;
+  border-radius:20px; color:#fff;
+  position:relative; overflow:hidden;
+  box-shadow:0 0 20px rgba(0,0,0,0.6);
+  padding:20px;
+}
+.badge::before {
+  content:""; position:absolute; top:0; left:0; width:100%; height:5px;
+}
+.top-section { display:flex; align-items:center; margin-bottom:15px; }
+.logo-icon {
+  width:40px; height:40px; background:#fff2;
+  border-radius:4px; display:flex; justify-content:center; align-items:center;
+  font-weight:bold; font-size:22px; margin-right:8px;
+}
+.logo-text strong { font-size:1.3em; letter-spacing:1px; }
+.photo {
+  width:100%; height:160px;
+  background:#333 url('https://via.placeholder.com/150x160?text=Photo') center/cover no-repeat;
+  border-radius:6px; margin-bottom:15px;
+}
+.details h2 { margin:8px 0 0; font-size:1.2em; }
+.details p { margin:0; font-size:1em; opacity:0.85; }
+.info { margin-top:15px; font-size:0.9em; }
+.info-row { display:flex; justify-content:space-between; margin:5px 0; }
+.barcode {
+  margin-top:15px; height:40px;
+  background: repeating-linear-gradient(
+    to right,
+    #fff 0 2px,
+    transparent 2px 4px,
+    #fff 4px 6px,
+    transparent 6px 8px
+  );
+}
+.qrcode { margin-top:10px; text-align:center; }
+.qrcode img { width:80px; height:80px; }
+.slogan {
+  text-align:center; margin-top:10px;
+  font-size:0.8em; letter-spacing:2px;
+}
+/* TIER COLORS */
+.command-core::before { background:#e63946; }
+.elite-op::before { background:#ff8c42; }
+.core-soldier::before { background:#38b000; }
+.recruit::before { background:#0077b6; }
 </style>
 </head>
 <body>
-<button class="toggle-mode" title="Toggle Dark/Light Mode"><i class="fa-solid fa-moon"></i></button>
 <header>
   <h1>🔍 Search for Members</h1>
   <p>Type a member’s name, rank, or ID below. Filter by rank if needed!</p>
 </header>
+
 <div class="controls">
   <input type="text" id="searchInput" placeholder="Enter name, rank, or ID...">
   <select id="rankFilter">
@@ -176,85 +121,54 @@
     <option>Field Marshal</option>
     <option>Shieldbearer</option>
     <option>Edge Handler</option>
-    <option>Eyes of R.A.I.D. (Intelligence Chief)</option>
-    <option>Gatekeeper (Recruiter)</option>
+    <option>Eyes of R.A.I.D.</option>
+    <option>Gatekeeper</option>
+    <option>Peacemaker</option>
+    <option>Lawyer</option>
+    <option>Night Operative</option>
+    <option>Initiate</option>
   </select>
   <button class="btn" onclick="searchMember()">Search <i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
+
 <div id="result"></div>
 <nav>
   <a href="index.html">⬅ Back to Home</a>
 </nav>
 
 <script>
-// Members data
+// All member data with badgeHtml
 const members = [
-  { fullName: "Rehan.P", joinedDate: "Start of R.A.I.D.", rank: "Overwatch", id: "001" },
-  { fullName: "Thaahir Ismail", joinedDate: "July 16 2025", rank: "Iron Vanguard", id: "002" },
-  { fullName: "Reyansh Wadhwani", joinedDate: "July 17 2025", rank: "Field Marshal", id: "003" },
-  { fullName: "Talal Haider", joinedDate: "July 11 2025", rank: "Shieldbearer", id: "004" },
-  { fullName: "Karas Amir", joinedDate: "July 10 2025", rank: "Edge Handler", id: "005" },
-  { fullName: "Mahdi Insaf", joinedDate: "July 16 2025", rank: "Eyes of R.A.I.D. (Intelligence Chief)", id: "006" },
-  { fullName: "Zayne Anzil", joinedDate: "July 17 2025", rank: "Gatekeeper (Recruiter)", id: "008" },
-];
-
-function renderResults(matches) {
-  const resultDiv = document.getElementById('result');
-  resultDiv.innerHTML = "";
-  if (matches.length === 0) {
-    resultDiv.innerHTML = "<p>No member found with that input.</p>";
-    return;
-  }
-  matches.forEach(member => {
-    const card = document.createElement('div');
-    card.className = 'member-card';
-    card.innerHTML = `
-      <h3>${member.fullName}</h3>
-      <p><strong>Joined Date:</strong> ${member.joinedDate}</p>
-      <p><strong>Rank:</strong> ${member.rank}</p>
-      <p><strong>ID Number:</strong> ${member.id}</p>
-    `;
-    resultDiv.appendChild(card);
-  });
-}
-
-function searchMember() {
-  const input = document.getElementById('searchInput').value.trim().toLowerCase();
-  const rankFilter = document.getElementById('rankFilter').value;
-  let matches = members.filter(m =>
-    (m.fullName.toLowerCase().includes(input) ||
-    m.rank.toLowerCase().includes(input) ||
-    m.id.toLowerCase().includes(input))
-  );
-  if (rankFilter) {
-    matches = matches.filter(m => m.rank === rankFilter);
-  }
-  renderResults(matches);
-}
-
-document.getElementById('searchInput').addEventListener('input', searchMember);
-document.getElementById('rankFilter').addEventListener('change', searchMember);
-
-// Dark/Light Mode
-const toggleBtn = document.querySelector('.toggle-mode');
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('light');
-  toggleBtn.innerHTML = document.body.classList.contains('light') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-});
-</script>
-
-<!-- Optional particle background -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-particlesJS("body", {
-  "particles": {
-    "number": {"value": 80},
-    "size": {"value": 3},
-    "color": {"value": "#00bfff"},
-    "line_linked": {"enable": true,"color":"#00bfff"},
-    "move": {"enable": true, "speed": 1}
-  }
-});
-</script>
-</body>
-</html>
+{
+ fullName:"Rehan.P", joinedDate:"Start of R.A.I.D.", rank:"Overwatch", id:"001",
+ badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">👁️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>OVERWATCH</h2><p>Founder – Rehan</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑5</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0001</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Overwatch"></div><div class="slogan">SILENCE. SPEED. SURVIVAL.</div></div>`},
+{
+ fullName:"Thaahir Ismail", joinedDate:"July 16 2025", rank:"Iron Vanguard", id:"002",
+ badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">🛡️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>IRON VANGUARD</h2><p>Second‑in‑Command – Thaahir</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑4</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0002</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=IronVanguard"></div><div class="slogan">DISCIPLINE. COMMAND. ACTION.</div></div>`},
+{
+ fullName:"Reyansh Wadhwani", joinedDate:"July 17 2025", rank:"Field Marshal", id:"003",
+ badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">⚔️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>FIELD MARSHAL</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑3</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0003</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=FieldMarshal"></div><div class="slogan">TACTICS. STRATEGY. VICTORY.</div></div>`},
+{
+ fullName:"Talal Haider", joinedDate:"July 11 2025", rank:"Shieldbearer", id:"004",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">⚡</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>SHIELDBEARER</h2><p>Frontline Lead – Talal</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>ALPHA‑2</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0004</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Shieldbearer"></div><div class="slogan">DEFENSE. STRENGTH. HONOR.</div></div>`},
+{
+ fullName:"Karas Amir", joinedDate:"July 10 2025", rank:"Edge Handler", id:"005",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🔰</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>EDGE HANDLER</h2><p>Specialist – Karas</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>ALPHA‑1</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0005</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=EdgeHandler"></div><div class="slogan">PRECISION. SILENCE. SUCCESS.</div></div>`},
+{
+ fullName:"Mahdi Insaf", joinedDate:"July 16 2025", rank:"Eyes of R.A.I.D.", id:"006",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🧭</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>EYES OF R.A.I.D.</h2><p>Intelligence Chief – Mahdi</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑3</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0006</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Eyes"></div><div class="slogan">INTEL. VIGILANCE. SHADOWS.</div></div>`},
+{
+ fullName:"Zayne Anzil", joinedDate:"July 17 2025", rank:"Gatekeeper", id:"007",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🤝</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>GATEKEEPER</h2><p>Recruiter – Zayne Anzil</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑2</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0007</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Gatekeeper"></div><div class="slogan">TRUST. TEST. GUIDE.</div></div>`},
+{
+ fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Peacemaker", id:"008",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">✌️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>PEACEMAKER</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑1</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0008</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Peacemaker"></div><div class="slogan">UNITY. ORDER. PEACE.</div></div>`},
+{
+ fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Lawyer", id:"009",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">👮‍♂️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>LAWYER</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑0</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0009</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Lawyer"></div><div class="slogan">TRUTH. DECEPTION. INFILTRATION.</div></div>`},
+{
+ fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Night Operative", id:"010",
+ badgeHtml:`<div class="badge core-soldier"><div class="top-section"><div class="logo-icon">🪶</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Core Soldier</div></div><div class="photo"></div><div class="details"><h2>NIGHT OPERATIVE</h2><p>Standard Soldier</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>DELTA‑1</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0010</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=NightOperative"></div><div class="slogan">OBEY. TRAIN. ASCEND.</div></div>`},
+{
+ fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Initiate", id:"011",
+ badgeHtml:`<div class="badge recruit"><div class="top-section"><div class="logo-icon">🌑</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Recruit</div></div><div class="photo"></div><div class="details"><h2>INITIATE</h2><p>Recruit in Training</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑0</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0011</span></div><div

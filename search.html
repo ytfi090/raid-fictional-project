@@ -16,7 +16,7 @@ body {
 header { text-align:center; padding:20px; }
 h1 { font-size:2em; margin-bottom:10px; }
 
-/* ---------- SEARCH CONTROLS ---------- */
+/* SEARCH CONTROLS */
 .controls {
   display:flex; flex-direction:column; gap:10px;
   align-items:center; padding:20px;
@@ -50,7 +50,7 @@ nav a{
 }
 nav a:hover{background:#333;box-shadow:0 0 15px #00bfff;}
 
-/* ---------- BADGE BASE ---------- */
+/* BADGE BASE */
 .badge {
   width:300px;height:500px;
   background:#1e1e1e;border-radius:20px;
@@ -63,13 +63,8 @@ nav a:hover{background:#333;box-shadow:0 0 15px #00bfff;}
 .badge::before{
   content:"";position:absolute;top:0;left:0;width:100%;height:5px;
 }
-.badge:hover {
-  transform:scale(1.03);
-  box-shadow:0 0 25px #00bfff;
-}
-.badge.clicked {
-  animation: clickPop 0.3s ease;
-}
+.badge:hover { transform:scale(1.03); box-shadow:0 0 25px #00bfff; }
+.badge.clicked { animation: clickPop 0.3s ease; }
 
 @keyframes clickPop {
   0% {transform:scale(1);}
@@ -107,13 +102,13 @@ nav a:hover{background:#333;box-shadow:0 0 15px #00bfff;}
 .qrcode img{width:80px;height:80px;}
 .slogan{text-align:center;margin-top:10px;font-size:0.8em;letter-spacing:2px;}
 
-/* ---------- TIER COLORS ---------- */
+/* TIER COLORS */
 .command-core::before{background:#e63946;}
 .elite-op::before{background:#ff8c42;}
 .core-soldier::before{background:#38b000;}
 .recruit::before{background:#0077b6;}
 
-/* ---------- ANIMATIONS ---------- */
+/* ANIMATIONS */
 @keyframes fadeInUp {
   0% {opacity:0;transform:translateY(30px);}
   100% {opacity:1;transform:translateY(0);}
@@ -157,15 +152,20 @@ nav a:hover{background:#333;box-shadow:0 0 15px #00bfff;}
 </audio>
 
 <script>
+// ========== Member Data ==========
 const members = [
 {
  fullName:"Rehan.P", joinedDate:"Start of R.A.I.D.", rank:"Overwatch", id:"001",
  badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">👁️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>OVERWATCH</h2><p>Founder – Rehan</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑5</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0001</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Overwatch"></div><div class="slogan">SILENCE. SPEED. SURVIVAL.</div></div>`},
 {
  fullName:"Thaahir Ismail", joinedDate:"July 16 2025", rank:"Iron Vanguard", id:"002",
- badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">🛡️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>IRON VANGUARD</h2><p>Second‑in‑Command – Thaahir</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑4</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0002</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=IronVanguard"></div><div class="slogan">DISCIPLINE. COMMAND. ACTION.</div></div>`}
+ badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">🛡️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>IRON VANGUARD</h2><p>Second‑in‑Command – Thaahir</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑4</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0002</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=IronVanguard"></div><div class="slogan">DISCIPLINE. COMMAND. ACTION.</div></div>`},
+{
+ fullName:"Talal Haider", joinedDate:"July 11 2025", rank:"Shieldbearer", id:"004",
+ badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">⚡</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>SHIELDBEARER</h2><p>Frontline Lead – Talal</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>ALPHA‑2</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0004</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Shieldbearer"></div><div class="slogan">DEFENSE. STRENGTH. HONOR.</div></div>`}
 ];
 
+// ========== Search Logic ==========
 function searchMember() {
   const query = document.getElementById("searchInput").value.toLowerCase().trim();
   const rankFilter = document.getElementById("rankFilter").value.trim();
@@ -199,11 +199,19 @@ function searchMember() {
   });
 }
 
+// ========== Sound & Animation ==========
 function playClick() {
   const sound = document.getElementById('clickSound');
   sound.currentTime = 0;
   sound.play();
 }
+
+// ========== Live Search Event ==========
+document.getElementById("searchInput").addEventListener("keyup", searchMember);
+document.getElementById("rankFilter").addEventListener("change", searchMember);
+
+// Initial load
+searchMember();
 </script>
 </body>
 </html>

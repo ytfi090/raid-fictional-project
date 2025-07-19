@@ -147,9 +147,51 @@ nav a:hover{
 <script>
 // ====== Data ======
 const members = [
-  { fullName:"Rehan.P", rank:"Overwatch", id:"001", joinedDate:"Start of R.A.I.D.", badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">👁️</div><div><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>OVERWATCH</h2><p>Founder – Rehan</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-001</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Overwatch"></div><div class="slogan">SILENCE. SPEED. SURVIVAL.</div></div>`},
-  { fullName:"Thaahir Ismail", rank:"Iron Vanguard", id:"002", joinedDate:"July 16 2025", badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">🛡️</div><div><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>IRON VANGUARD</h2><p>Second‑in‑Command – Thaahir</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-002</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=IronVanguard"></div><div class="slogan">DISCIPLINE. COMMAND. ACTION.</div></div>`},
-  // Add your other members here…
+  const members = [
+  {
+    fullName:"Rehan.P",
+    rank:"Overwatch",
+    id:"001",
+    joinedDate:"Start of R.A.I.D.",
+    badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">👁️</div><div><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>OVERWATCH</h2><p>Founder – Rehan</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-001</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Overwatch"></div><div class="slogan">SILENCE. SPEED. SURVIVAL.</div></div>`
+  },
+  {
+    fullName:"Thaahir Ismail",
+    rank:"Iron Vanguard",
+    id:"002",
+    joinedDate:"July 16 2025",
+    badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">🛡️</div><div><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>IRON VANGUARD</h2><p>Second‑in‑Command – Thaahir</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-002</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=IronVanguard"></div><div class="slogan">DISCIPLINE. COMMAND. ACTION.</div></div>`
+  },
+  {
+    fullName:"Reyansh Wadhwani",
+    rank:"Field Marshal",
+    id:"003",
+    joinedDate:"July 17 2025",
+    badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">⚔️</div><div><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>FIELD MARSHAL</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-003</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=FieldMarshal"></div><div class="slogan">TACTICS. STRATEGY. VICTORY.</div></div>`
+  },
+  {
+    fullName:"Talal Haider",
+    rank:"Shieldbearer",
+    id:"004",
+    joinedDate:"July 11 2025",
+    badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">⚡</div><div><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>SHIELDBEARER</h2><p>Frontline Lead – Talal</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-004</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Shieldbearer"></div><div class="slogan">DEFENSE. STRENGTH. HONOR.</div></div>`
+  },
+  {
+    fullName:"Karas Amir",
+    rank:"Edge Handler",
+    id:"005",
+    joinedDate:"July 10 2025",
+    badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🔰</div><div><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>EDGE HANDLER</h2><p>Specialist – Karas</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-005</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=EdgeHandler"></div><div class="slogan">PRECISION. SILENCE. SUCCESS.</div></div>`
+  },
+  {
+    fullName:"Mahdi Insaf",
+    rank:"Eyes of R.A.I.D.",
+    id:"006",
+    joinedDate:"July 16 2025",
+    badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🧭</div><div><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>EYES OF R.A.I.D.</h2><p>Intelligence Chief – Mahdi</p></div><div class="info"><div class="info-row"><span>ID:</span><span>R-006</span></div><div class="info-row"><span>Date:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Eyes"></div><div class="slogan">INTEL. VIGILANCE. SHADOWS.</div></div>`
+  },
+  
+];
 ];
 
 // ====== Search ======

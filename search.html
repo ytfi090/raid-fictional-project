@@ -1,25 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Members - R.A.I.D.</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔍 Search Members – R.A.I.D.</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: #121212;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+  }
+  input, select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 250px;
+    font-size: 1em;
+    background: #1e1e1e;
+    color: #fff;
+    transition: box-shadow 0.3s;
+  }
+  input:focus, select:focus {
+    box-shadow: 0 0 10px #00bfff;
+  }
+  .btn {
+    margin-top: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(45deg,#ff416c,#ff4b2b);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff416c;
+  }
+  .btn::before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.1);
+    transition: left 0.5s;
+  }
+  .btn:hover::before {
+    left:100%;
+  }
+  #result {
+    max-width: 900px;
+    margin: 20px auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    padding: 0 20px 60px;
+  }
+  .member-card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    animation: fadeInUp 0.6s ease;
+  }
+  .member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #00bfff;
+    background: rgba(255,255,255,0.1);
+  }
+  .member-card h3 {
+    margin-top:0;
+  }
+  @keyframes fadeInUp {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+  }
+  nav {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  nav a {
+    display:inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #1e1e1e;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid #444;
+    transition: 0.3s;
+  }
+  nav a:hover {
+    background: #333;
+    box-shadow: 0 0 15px #00bfff;
+    transform: scale(1.05);
+  }
+  .toggle-mode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 1000;
+  }
+  .toggle-mode:hover {
+    background: #555;
+  }
+  canvas {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+  /* Light mode */
+  body.light {
+    background: #f2f2f2;
+    color: #000;
+  }
+  body.light input,
+  body.light select {
+    background:#fff;
+    color:#000;
+  }
+  body.light .member-card {
+    background: #eee;
+    color:#000;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔍 Search for Members</h1>
-    <p>Type a member’s name, rank, or ID number below:</p>
-    <input type="text" id="searchInput" placeholder="Enter name, rank, or ID...">
-    <button onclick="searchMember()">Search</button>
+<button class="toggle-mode" title="Toggle Dark/Light Mode"><i class="fa-solid fa-moon"></i></button>
+<header>
+  <h1>🔍 Search for Members</h1>
+  <p>Type a member’s name, rank, or ID below. Filter by rank if needed!</p>
+</header>
+<div class="controls">
+  <input type="text" id="searchInput" placeholder="Enter name, rank, or ID...">
+  <select id="rankFilter">
+    <option value="">All Ranks</option>
+    <option>Overwatch</option>
+    <option>Iron Vanguard</option>
+    <option>Field Marshal</option>
+    <option>Shieldbearer</option>
+    <option>Edge Handler</option>
+    <option>Eyes of R.A.I.D. (Intelligence Chief)</option>
+    <option>Gatekeeper (Recruiter)</option>
+  </select>
+  <button class="btn" onclick="searchMember()">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<div id="result"></div>
+<nav>
+  <a href="index.html">⬅ Back to Home</a>
+</nav>
 
-    <div id="result" class="results-box"></div>
+<script>
+// Members data
+const members = [
+  { fullName: "Rehan.P", joinedDate: "Start of R.A.I.D.", rank: "Overwatch", id: "001" },
+  { fullName: "Thaahir Ismail", joinedDate: "July 16 2025", rank: "Iron Vanguard", id: "002" },
+  { fullName: "Reyansh Wadhwani", joinedDate: "July 17 2025", rank: "Field Marshal", id: "003" },
+  { fullName: "Talal Haider", joinedDate: "July 11 2025", rank: "Shieldbearer", id: "004" },
+  { fullName: "Karas Amir", joinedDate: "July 10 2025", rank: "Edge Handler", id: "005" },
+  { fullName: "Mahdi Insaf", joinedDate: "July 16 2025", rank: "Eyes of R.A.I.D. (Intelligence Chief)", id: "006" },
+  { fullName: "Zayne Anzil", joinedDate: "July 17 2025", rank: "Gatekeeper (Recruiter)", id: "008" },
+];
 
-    <nav>
-      <a href="index.html">⬅ Back to Home</a>
-    </nav>
-  </div>
+function renderResults(matches) {
+  const resultDiv = document.getElementById('result');
+  resultDiv.innerHTML = "";
+  if (matches.length === 0) {
+    resultDiv.innerHTML = "<p>No member found with that input.</p>";
+    return;
+  }
+  matches.forEach(member => {
+    const card = document.createElement('div');
+    card.className = 'member-card';
+    card.innerHTML = `
+      <h3>${member.fullName}</h3>
+      <p><strong>Joined Date:</strong> ${member.joinedDate}</p>
+      <p><strong>Rank:</strong> ${member.rank}</p>
+      <p><strong>ID Number:</strong> ${member.id}</p>
+    `;
+    resultDiv.appendChild(card);
+  });
+}
 
-  <script src="script.js"></script>
+function searchMember() {
+  const input = document.getElementById('searchInput').value.trim().toLowerCase();
+  const rankFilter = document.getElementById('rankFilter').value;
+  let matches = members.filter(m =>
+    (m.fullName.toLowerCase().includes(input) ||
+    m.rank.toLowerCase().includes(input) ||
+    m.id.toLowerCase().includes(input))
+  );
+  if (rankFilter) {
+    matches = matches.filter(m => m.rank === rankFilter);
+  }
+  renderResults(matches);
+}
+
+document.getElementById('searchInput').addEventListener('input', searchMember);
+document.getElementById('rankFilter').addEventListener('change', searchMember);
+
+// Dark/Light Mode
+const toggleBtn = document.querySelector('.toggle-mode');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  toggleBtn.innerHTML = document.body.classList.contains('light') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+});
+</script>
+
+<!-- Optional particle background -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+particlesJS("body", {
+  "particles": {
+    "number": {"value": 80},
+    "size": {"value": 3},
+    "color": {"value": "#00bfff"},
+    "line_linked": {"enable": true,"color":"#00bfff"},
+    "move": {"enable": true, "speed": 1}
+  }
+});
+</script>
 </body>
 </html>

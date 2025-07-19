@@ -9,213 +9,160 @@
 body {
   margin:0; padding:0;
   font-family:Arial, sans-serif;
-  background:#0d0d0d;
-  color:#f0f0f0;
-}
-header {
-  text-align:center;
-  padding:20px;
-  background:linear-gradient(45deg,#1e1e1e,#222);
-  border-bottom:3px solid #444;
-}
-header h1 {
-  font-size:1.9em;
-  margin:0;
-  color:#00bfff;
-}
-header p { font-size:1em; color:#ccc; margin-top:8px; }
-
-.controls {
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:center;
-  padding:20px;
-}
-.controls input {
-  padding:12px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-  width:260px;
-  font-size:1em;
-  background:#1e1e1e;
+  background:#121212;
   color:#fff;
+}
+header { text-align:center; padding:20px; }
+h1 { font-size:2em; margin-bottom:10px; }
+
+/* SEARCH CONTROLS */
+.controls {
+  display:flex; flex-direction:column; gap:10px;
+  align-items:center; padding:20px;
+}
+input,select {
+  padding:10px; border-radius:8px; border:none; outline:none;
+  width:250px; font-size:1em;
+  background:#1e1e1e; color:#fff;
   transition:box-shadow 0.3s;
 }
-.controls input:focus {
-  box-shadow:0 0 10px #00bfff;
-}
-.controls button {
-  padding:12px 20px;
+input:focus,select:focus{box-shadow:0 0 10px #00bfff;}
+.btn{
+  margin-top:10px;padding:12px 20px;
   background:linear-gradient(45deg,#ff416c,#ff4b2b);
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  font-size:1em;
-  cursor:pointer;
+  color:#fff;border:none;border-radius:8px;
+  font-size:1em;cursor:pointer;
   transition:transform 0.3s,box-shadow 0.3s;
 }
-.controls button:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 15px #ff416c;
-}
-
-#results {
-  max-width:1100px;
-  margin:20px auto;
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
+.btn:hover{transform:scale(1.05);box-shadow:0 0 15px #ff416c;}
+#result{
+  max-width:1100px;margin:20px auto;display:flex;
+  flex-wrap:wrap;gap:20px;justify-content:center;
   padding-bottom:60px;
 }
-
-/* MEMBER CARD */
 .member-card {
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp 0.5s ease forwards;
-  padding:15px 18px;
-  border-radius:12px;
   background:#1e1e1e;
-  box-shadow:0 0 8px rgba(0,0,0,0.6);
-  width:250px;
-  transition:transform 0.3s,box-shadow 0.3s;
-  cursor:pointer;
-}
-.member-card:hover {
-  transform:scale(1.05);
-}
-.member-card h3 {
-  margin:0 0 8px;
-  font-size:1.2em;
-}
-.member-card p {
-  margin:4px 0;
-  font-size:0.9em;
-  color:#ccc;
-}
-@keyframes fadeUp {
-  to { opacity:1; transform:translateY(0); }
-}
-
-/* Tier Colors */
-.command-core { border-left:6px solid #e63946; }
-.command-core h3 { color:#e63946; }
-
-.elite-op { border-left:6px solid #38b000; }
-.elite-op h3 { color:#38b000; }
-
-.core-soldier { border-left:6px solid #00b4d8; }
-.core-soldier h3 { color:#00b4d8; }
-
-.recruit { border-left:6px solid #9d4edd; }
-.recruit h3 { color:#9d4edd; }
-
-nav {
+  border-radius:12px;
+  padding:15px;
+  width:300px;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
   text-align:center;
-  margin:30px;
 }
-nav a {
-  display:inline-block;
-  padding:10px 20px;
-  background:#222;
-  color:#fff;
-  border-radius:8px;
-  text-decoration:none;
-  border:2px solid #555;
-  transition:all 0.3s;
-}
-nav a:hover {
+.member-card h3{margin:0 0 10px;}
+.member-card p{margin:4px 0;}
+.member-card button{
+  margin-top:10px;
   background:#00bfff;
-  border-color:#00bfff;
-  color:#000;
+  color:#fff;
+  border:none;
+  padding:8px 15px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:background 0.3s;
 }
-
-/* MOBILE */
-@media(max-width:768px){
-  header h1 { font-size:1.5em; }
-  .member-card { width:90%; }
-  .controls input { width:90%; font-size:1em; }
-  .controls button { width:60%; font-size:1.1em; }
+.member-card button:hover{background:#0095cc;}
+iframe.badge-frame{
+  margin-top:15px;
+  width:100%;
+  height:500px;
+  border:none;
+  border-radius:8px;
 }
+nav{text-align:center;margin:30px;}
+nav a{
+  display:inline-block;padding:10px 20px;
+  background:#1e1e1e;color:#fff;
+  border-radius:8px;text-decoration:none;
+  border:2px solid #444;transition:all 0.3s;
+}
+nav a:hover{background:#333;box-shadow:0 0 15px #00bfff;}
 </style>
 </head>
 <body>
 <header>
-  <h1>🔍 R.A.I.D. Member Search</h1>
-  <p>Find members by name, badge, or ID</p>
+  <h1>🔍 Search for Members</h1>
+  <p>Type a member’s name, rank, or ID below. Filter by rank if needed!</p>
 </header>
 
 <div class="controls">
-  <input type="text" id="searchBox" placeholder="Type to search...">
-  <button onclick="playClick();searchMembers()">Search</button>
+  <input type="text" id="searchInput" placeholder="Enter name, rank, or ID...">
+  <select id="rankFilter">
+    <option value="">All Ranks</option>
+    <option>Overwatch</option>
+    <option>Iron Vanguard</option>
+    <option>Field Marshal</option>
+    <option>Shieldbearer</option>
+    <option>Edge Handler</option>
+    <option>Eyes of R.A.I.D.</option>
+    <option>Gatekeeper</option>
+    <option>Peacemaker</option>
+    <option>Lawyer</option>
+    <option>Night Operative</option>
+    <option>Initiate</option>
+  </select>
+  <button class="btn" onclick="searchMember()">Search <i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
 
-<div id="results"></div>
+<div id="result"></div>
 
 <nav>
   <a href="index.html">⬅ Back to Home</a>
 </nav>
 
-<!-- CLICK SOUND -->
-<audio id="click-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9e2213c1d0.mp3?filename=click-124467.mp3" preload="auto"></audio>
-
 <script>
 const members = [
-  { name:"Rehan", badge:"Overwatch", id:"001", tier:"command-core" },
-  { name:"Thaahir", badge:"Iron Vanguard", id:"002", tier:"command-core" },
-  { name:"Talal", badge:"Shieldbearer", id:"003", tier:"elite-op" },
-  { name:"Karas", badge:"Edge Handler", id:"004", tier:"elite-op" },
-  { name:"Mahdi", badge:"Eyes of R.A.I.D.", id:"005", tier:"elite-op" },
-  { name:"Zayne Anzil", badge:"Gatekeeper", id:"006", tier:"elite-op" },
-  { name:"Peacemaker Vacant", badge:"Peacemaker", id:"007", tier:"elite-op" },
-  { name:"Lawyer Vacant", badge:"Lawyer", id:"008", tier:"elite-op" },
-  { name:"Night Op A", badge:"Night Operative", id:"009", tier:"core-soldier" },
-  { name:"Night Op B", badge:"Night Operative", id:"010", tier:"core-soldier" },
-  { name:"Night Op C", badge:"Night Operative", id:"011", tier:"core-soldier" },
-  { name:"Recruit X", badge:"Initiate", id:"012", tier:"recruit" }
+  { fullName:"Rehan.P", joinedDate:"Start of R.A.I.D.", rank:"Overwatch", id:"001" },
+  { fullName:"Thaahir Ismail", joinedDate:"July 16 2025", rank:"Iron Vanguard", id:"002" },
+  { fullName:"Reyansh Wadhwani", joinedDate:"July 17 2025", rank:"Field Marshal", id:"003" },
+  { fullName:"Talal Haider", joinedDate:"July 11 2025", rank:"Shieldbearer", id:"004" },
+  { fullName:"Karas Amir", joinedDate:"July 10 2025", rank:"Edge Handler", id:"005" },
+  { fullName:"Mahdi Insaf", joinedDate:"July 16 2025", rank:"Eyes of R.A.I.D.", id:"006" },
+  { fullName:"Zayne Anzil", joinedDate:"July 17 2025", rank:"Gatekeeper", id:"007" },
+  { fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Peacemaker", id:"008" },
+  { fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Lawyer", id:"009" },
+  { fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Night Operative", id:"010" },
+  { fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Initiate", id:"011" }
 ];
 
-const resultsDiv = document.getElementById('results');
-const searchBox = document.getElementById('searchBox');
-
-function playClick() {
-  const audio = document.getElementById('click-sound');
-  audio.currentTime = 0;
-  audio.play();
-}
-
-function searchMembers() {
-  const query = searchBox.value.toLowerCase().trim();
+function searchMember() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const rankFilter = document.getElementById("rankFilter").value;
+  const resultsDiv = document.getElementById('result');
   resultsDiv.innerHTML = "";
-  if(!query) return;
-  const filtered = members.filter(m =>
-    m.name.toLowerCase().includes(query) ||
-    m.badge.toLowerCase().includes(query) ||
-    m.id.toLowerCase().includes(query)
-  );
-  if(filtered.length === 0){
-    resultsDiv.innerHTML = "<p style='color:#f66;font-size:1.2em;'>❌ Member not found</p>";
+
+  const matches = members.filter(m => {
+    const inName = m.fullName.toLowerCase().includes(query);
+    const inRank = m.rank.toLowerCase().includes(query);
+    const inId = m.id.toLowerCase().includes(query);
+    const passesFilter = rankFilter === "" || m.rank === rankFilter;
+    return passesFilter && (inName || inRank || inId);
+  });
+
+  if (matches.length === 0) {
+    resultsDiv.innerHTML = "<p>No member found.</p>";
     return;
   }
-  filtered.forEach(m=>{
+
+  matches.forEach(m => {
     const card = document.createElement('div');
-    card.className = `member-card ${m.tier}`;
+    card.className = 'member-card';
     card.innerHTML = `
-      <h3>${m.badge}</h3>
-      <p><strong>Name:</strong> ${m.name}</p>
+      <h3>${m.fullName}</h3>
+      <p><strong>Rank:</strong> ${m.rank}</p>
       <p><strong>ID:</strong> ${m.id}</p>
+      <button onclick="showBadge('${m.id}', this)">View Badge</button>
+      <div class="badge-container"></div>
     `;
-    card.addEventListener('click', playClick);
     resultsDiv.appendChild(card);
   });
 }
 
-// Live search as you type
-searchBox.addEventListener('input', searchMembers);
+function showBadge(id, buttonEl) {
+  const container = buttonEl.nextElementSibling;
+  container.innerHTML = `
+    <iframe class="badge-frame" src="badges.html?id=${id}"></iframe>
+  `;
+}
 </script>
-
 </body>
 </html>

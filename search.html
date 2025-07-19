@@ -1,10 +1,3 @@
-Got it! ✅
-Here’s a full updated search.html that already includes all your badge designs (copied from your CSS + markup) and dynamically shows them when searching.
-
-⸻
-
-✨ Full search.html with all badges integrated
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +7,9 @@ Here’s a full updated search.html that already includes all your badge designs
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 body {
-  margin: 0; padding: 0;
-  font-family: Arial, sans-serif;
-  background:#121212;
-  color:#fff;
+  margin:0; padding:0;
+  font-family:Arial, sans-serif;
+  background:#121212; color:#fff;
 }
 header {
   text-align:center;
@@ -56,13 +48,17 @@ nav a {
 nav a:hover { background:#333; box-shadow:0 0 15px #00bfff; }
 
 /* ---------- BADGE STYLES ---------- */
-body { background:#222; }
 .badge {
   width:350px; height:550px; background:#111;
   border-radius:20px; color:#fff;
   position:relative; overflow:hidden;
   box-shadow:0 0 20px rgba(0,0,0,0.6);
   padding:20px;
+  opacity:0; transform:scale(0.95);
+  transition:all 0.4s ease;
+}
+.badge.show {
+  opacity:1; transform:scale(1);
 }
 .badge::before {
   content:""; position:absolute; top:0; left:0; width:100%; height:5px;
@@ -104,6 +100,13 @@ body { background:#222; }
 .elite-op::before { background:#ff8c42; }
 .core-soldier::before { background:#38b000; }
 .recruit::before { background:#0077b6; }
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .badge { width:90%; height:auto; }
+  .details h2 { font-size:1em; }
+  .info-row span { font-size:0.8em; }
+}
 </style>
 </head>
 <body>
@@ -137,38 +140,44 @@ body { background:#222; }
 </nav>
 
 <script>
-// All member data with badgeHtml
-const members = [
-{
- fullName:"Rehan.P", joinedDate:"Start of R.A.I.D.", rank:"Overwatch", id:"001",
- badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">👁️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>OVERWATCH</h2><p>Founder – Rehan</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑5</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0001</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Overwatch"></div><div class="slogan">SILENCE. SPEED. SURVIVAL.</div></div>`},
-{
- fullName:"Thaahir Ismail", joinedDate:"July 16 2025", rank:"Iron Vanguard", id:"002",
- badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">🛡️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>IRON VANGUARD</h2><p>Second‑in‑Command – Thaahir</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑4</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0002</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=IronVanguard"></div><div class="slogan">DISCIPLINE. COMMAND. ACTION.</div></div>`},
-{
- fullName:"Reyansh Wadhwani", joinedDate:"July 17 2025", rank:"Field Marshal", id:"003",
- badgeHtml:`<div class="badge command-core"><div class="top-section"><div class="logo-icon">⚔️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Command Core</div></div><div class="photo"></div><div class="details"><h2>FIELD MARSHAL</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑3</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0003</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=FieldMarshal"></div><div class="slogan">TACTICS. STRATEGY. VICTORY.</div></div>`},
-{
- fullName:"Talal Haider", joinedDate:"July 11 2025", rank:"Shieldbearer", id:"004",
- badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">⚡</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>SHIELDBEARER</h2><p>Frontline Lead – Talal</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>ALPHA‑2</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0004</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Shieldbearer"></div><div class="slogan">DEFENSE. STRENGTH. HONOR.</div></div>`},
-{
- fullName:"Karas Amir", joinedDate:"July 10 2025", rank:"Edge Handler", id:"005",
- badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🔰</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>EDGE HANDLER</h2><p>Specialist – Karas</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>ALPHA‑1</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0005</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=EdgeHandler"></div><div class="slogan">PRECISION. SILENCE. SUCCESS.</div></div>`},
-{
- fullName:"Mahdi Insaf", joinedDate:"July 16 2025", rank:"Eyes of R.A.I.D.", id:"006",
- badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🧭</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>EYES OF R.A.I.D.</h2><p>Intelligence Chief – Mahdi</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑3</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0006</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Eyes"></div><div class="slogan">INTEL. VIGILANCE. SHADOWS.</div></div>`},
-{
- fullName:"Zayne Anzil", joinedDate:"July 17 2025", rank:"Gatekeeper", id:"007",
- badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">🤝</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>GATEKEEPER</h2><p>Recruiter – Zayne Anzil</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑2</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0007</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Gatekeeper"></div><div class="slogan">TRUST. TEST. GUIDE.</div></div>`},
-{
- fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Peacemaker", id:"008",
- badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">✌️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>PEACEMAKER</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑1</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0008</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Peacemaker"></div><div class="slogan">UNITY. ORDER. PEACE.</div></div>`},
-{
- fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Lawyer", id:"009",
- badgeHtml:`<div class="badge elite-op"><div class="top-section"><div class="logo-icon">👮‍♂️</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Elite Operative</div></div><div class="photo"></div><div class="details"><h2>LAWYER</h2><p>(Currently Vacant)</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>BETA‑0</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0009</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Lawyer"></div><div class="slogan">TRUTH. DECEPTION. INFILTRATION.</div></div>`},
-{
- fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Night Operative", id:"010",
- badgeHtml:`<div class="badge core-soldier"><div class="top-section"><div class="logo-icon">🪶</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Core Soldier</div></div><div class="photo"></div><div class="details"><h2>NIGHT OPERATIVE</h2><p>Standard Soldier</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>DELTA‑1</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0010</span></div><div class="info-row"><span>ISSUE DATE:</span><span>2025‑07‑09</span></div></div><div class="barcode"></div><div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=NightOperative"></div><div class="slogan">OBEY. TRAIN. ASCEND.</div></div>`},
-{
- fullName:"Vacant", joinedDate:"2025‑07‑09", rank:"Initiate", id:"011",
- badgeHtml:`<div class="badge recruit"><div class="top-section"><div class="logo-icon">🌑</div><div class="logo-text"><strong>R.A.I.D.</strong><br>Recruit</div></div><div class="photo"></div><div class="details"><h2>INITIATE</h2><p>Recruit in Training</p></div><div class="info"><div class="info-row"><span>CLEARANCE:</span><span>OMEGA‑0</span></div><div class="info-row"><span>ID NO.:</span><span>R‑0011</span></div><div
+// your members data stays same
+const members = [ /* ... your member objects with badgeHtml ... */ ];
+
+function searchMember() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const rankFilter = document.getElementById("rankFilter").value;
+  const matches = members.filter(m => {
+    const inName = m.fullName.toLowerCase().includes(query);
+    const inRank = m.rank.toLowerCase().includes(query);
+    const inId = m.id.toLowerCase().includes(query);
+    const passesFilter = rankFilter === "" || m.rank === rankFilter;
+    return passesFilter && (inName || inRank || inId);
+  });
+  renderResults(matches);
+}
+function renderResults(matches) {
+  const resultDiv = document.getElementById('result');
+  resultDiv.innerHTML = "";
+  if (matches.length === 0) {
+    resultDiv.innerHTML = "<p>No member found.</p>";
+    return;
+  }
+  matches.forEach(member => {
+    const wrap = document.createElement('div');
+    wrap.innerHTML = member.badgeHtml;
+    const badge = wrap.firstElementChild;
+    resultDiv.appendChild(badge);
+    // trigger animation
+    setTimeout(() => badge.classList.add('show'), 50);
+  });
+}
+
+// 🔥 Live search events
+document.getElementById("searchInput").addEventListener("input", searchMember);
+document.getElementById("rankFilter").addEventListener("change", searchMember);
+
+// initial render all
+renderResults(members);
+</script>
+</body>
+</html>

@@ -23,7 +23,6 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* Pulsing logo */
   .logo {
     margin-top: 30px;
     max-width: 200px;
@@ -38,7 +37,6 @@
     100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
   }
 
-  /* Typewriter */
   h1 {
     margin-top: 10px;
     font-family: 'Orbitron', sans-serif;
@@ -48,7 +46,6 @@
     overflow: hidden;
     border-right: .15em solid #fff;
   }
-
   p {
     margin-top: 10px;
     font-size: 1em;
@@ -96,11 +93,9 @@
     transform: scale(1.08) rotate(-1deg);
     box-shadow: 0 0 25px 8px rgba(255,255,255,0.4);
   }
-  .nav-button:active {
-    transform: scale(0.95);
-  }
+  .nav-button:active { transform: scale(0.95); }
 
-  /* Gradients */
+  /* Gradients for each button */
   .btn-ranks { background: linear-gradient(45deg,#ff416c,#ff4b2b); }
   .btn-missions { background: linear-gradient(45deg,#1e3c72,#2a5298); }
   .btn-about { background: linear-gradient(45deg,#11998e,#38ef7d); }
@@ -118,10 +113,22 @@
     font-size: 0.85em;
     color: #bbb;
     box-shadow: 0 -2px 10px rgba(255,255,255,0.2);
+    text-align: center;
   }
-  footer:hover {
-    box-shadow: 0 -2px 25px rgba(255,255,255,0.5);
-    transition: box-shadow 0.3s ease-in-out;
+
+  /* Side-align footer on larger screens */
+  @media (min-width: 768px) {
+    footer {
+      position: fixed;
+      right: 0;
+      bottom: 20px;
+      width: 250px;
+      text-align: left;
+      background: rgba(26,26,26,0.7);
+      padding: 10px;
+      border-radius: 8px 0 0 8px;
+      box-shadow: -3px 0 10px rgba(255,255,255,0.3);
+    }
   }
 
   /* Loader */

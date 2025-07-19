@@ -1,285 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>R.A.I.D. Official Ranks</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranks – R.A.I.D.</title>
 <style>
-  body {
-    margin:0;
-    padding:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-    color:#fff;
+body {
+  margin:0; padding:0;
+  font-family:Arial, sans-serif;
+  background:#0d0d0d;
+  color:#f0f0f0;
+  line-height:1.6;
+}
+header {
+  text-align:center;
+  padding:30px 15px;
+  background:linear-gradient(45deg,#1e1e1e,#222);
+  border-bottom:3px solid #444;
+}
+header h1 {
+  font-size:2em;
+  margin:0;
+  color:#00bfff;
+  letter-spacing:1px;
+}
+header p { margin-top:10px; font-size:1em; color:#ccc; }
+
+.container {
+  max-width:1000px;
+  margin:30px auto;
+  padding:0 20px 40px;
+}
+
+/* Rank block with fade-in animation */
+.rank-block {
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp 0.8s ease forwards;
+  margin:20px 0;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,0,0,0.6);
+  transition:transform 0.3s, box-shadow 0.3s;
+  cursor:pointer;
+}
+.rank-block:hover {
+  transform:scale(1.02);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity:1;
+    transform:translateY(0);
   }
-  @keyframes gradientBG {
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-  }
-  header {
-    text-align:center;
-    padding:30px 20px 10px;
-  }
-  header h1 {
-    font-family:'Orbitron',sans-serif;
-    font-size:2.5em;
-    margin:0;
-    text-shadow:0 0 15px #fff, 0 0 30px #38ef7d, 0 0 45px #38ef7d;
-  }
-  header p {
-    max-width:700px;
-    margin:10px auto;
-    font-size:1.1em;
-  }
-  .search-box {
-    text-align:center;
-    margin:20px;
-  }
-  .search-box input {
-    padding:10px;
-    width:300px;
-    border-radius:6px;
-    border:none;
-    outline:none;
-    font-size:1em;
-  }
-  .accordion {
-    max-width:900px;
-    margin:20px auto;
-  }
-  .accordion-item {
-    background: rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    margin-bottom:10px;
-    border-radius:8px;
-    overflow:hidden;
-  }
-  .accordion-header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px;
-    cursor:pointer;
-    font-family:'Orbitron',sans-serif;
-    font-size:1.1em;
-    background: rgba(0,0,0,0.4);
-  }
-  .accordion-header:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  .accordion-header span.emoji {
-    font-size:1.3em;
-    margin-right:10px;
-  }
-  .accordion-content {
-    display:none;
-    padding:15px;
-    font-size:0.95em;
-    line-height:1.6;
-    background: rgba(0,0,0,0.3);
-  }
-  .accordion-item.active .accordion-content {
-    display:block;
-  }
-  a.back-home {
-    display:inline-block;
-    margin:40px auto;
-    text-align:center;
-    background: linear-gradient(45deg,#ff416c,#ff4b2b);
-    padding:12px 25px;
-    color:#fff;
-    text-decoration:none;
-    border-radius:6px;
-    font-weight:bold;
-    transition:all 0.3s ease-in-out;
-  }
-  a.back-home:hover {
-    transform:scale(1.05);
-    box-shadow:0 0 20px rgba(255,255,255,0.3);
-  }
-  footer {
-    text-align:center;
-    padding:20px;
-    font-size:0.8em;
-    color:#ccc;
-  }
+}
+
+/* ---- TIER COLORS ---- */
+.command-core {
+  border-left:6px solid #e63946; /* red */
+}
+.command-core:hover { box-shadow:0 0 15px rgba(230,57,70,0.6); }
+.command-core h2 { color:#e63946; }
+
+.elite-op {
+  border-left:6px solid #38b000; /* green */
+}
+.elite-op:hover { box-shadow:0 0 15px rgba(56,176,0,0.6); }
+.elite-op h2 { color:#38b000; }
+
+.core-soldier {
+  border-left:6px solid #00b4d8; /* blue */
+}
+.core-soldier:hover { box-shadow:0 0 15px rgba(0,180,216,0.6); }
+.core-soldier h2 { color:#00b4d8; }
+
+.recruit {
+  border-left:6px solid #9d4edd; /* purple */
+}
+.recruit:hover { box-shadow:0 0 15px rgba(157,78,221,0.6); }
+.recruit h2 { color:#9d4edd; }
+
+.rank-block h2 {
+  font-size:1.6em;
+  margin-bottom:10px;
+}
+.rank-block .tier {
+  font-weight:bold;
+  font-size:0.95em;
+  margin-bottom:8px;
+}
+.rank-block ul {
+  padding-left:20px;
+  margin:10px 0 0;
+}
+.rank-block ul li {
+  margin-bottom:6px;
+}
+
+/* Nav */
+nav {
+  text-align:center;
+  margin-top:40px;
+}
+nav a {
+  color:#fff;
+  text-decoration:none;
+  background:#222;
+  padding:12px 18px;
+  border-radius:8px;
+  border:2px solid #555;
+  transition:all 0.3s;
+}
+nav a:hover {
+  background:#00bfff;
+  border-color:#00bfff;
+  color:#000;
+}
+
+/* 🔧 MOBILE TWEAKS */
+@media(max-width:768px){
+  header h1 { font-size:1.6em; }
+  .rank-block { padding:18px; margin:15px 0; }
+  .rank-block h2 { font-size:1.3em; }
+  .rank-block ul { padding-left:15px; }
+  nav a { display:inline-block; margin:10px 0; padding:14px 22px; font-size:1.05em; }
+}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>📝 R.A.I.D. Official Ranks</h1>
-  <p>Every member of R.A.I.D. serves a purpose. Browse through the ranks below, search, and click to reveal details.</p>
+  <h1>📜 Official Ranking System</h1>
+  <p>All ranks of R.A.I.D. explained with their roles and tiers</p>
 </header>
 
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search rank...">
+<div class="container">
+
+  <!-- COMMAND CORE -->
+  <div class="rank-block command-core">
+    <h2>👁️ Overwatch <small>(Founder – Rehan)</small></h2>
+    <div class="tier">Tier: Command Core</div>
+    <ul>
+      <li>Create the vision and missions for R.A.I.D.</li>
+      <li>Approve all major decisions and promotions.</li>
+      <li>Stay hidden within other groups (like C.O.M.P.) to gather intel.</li>
+      <li>Give orders to the Iron Vanguard and oversee every operation.</li>
+      <li>Final authority in disputes and discipline.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block command-core">
+    <h2>🛡️ Iron Vanguard <small>(Second‑in‑Command – Thaahir)</small></h2>
+    <div class="tier">Tier: Command Core</div>
+    <ul>
+      <li>Directly commands squads and missions.</li>
+      <li>Enforces the code of R.A.I.D. daily.</li>
+      <li>Takes charge when Overwatch is observing from the shadows.</li>
+      <li>Helps train and guide other members.</li>
+      <li>Reports mission status and problems to Overwatch.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block command-core">
+    <h2>⚔️ Field Marshal <small>(Currently Vacant)</small></h2>
+    <div class="tier">Tier: Command Core</div>
+    <ul>
+      <li>Tactical coordinator during missions.</li>
+      <li>Leads large operations involving multiple squads.</li>
+      <li>Oversees Elite Operatives (Shieldbearer, Edge Handler, Eyes, Gatekeeper).</li>
+    </ul>
+  </div>
+
+  <!-- ELITE OPERATIVES -->
+  <div class="rank-block elite-op">
+    <h2>⚡ Shieldbearer <small>(Frontline Lead – Talal)</small></h2>
+    <div class="tier">Tier: Elite Operatives</div>
+    <ul>
+      <li>Leads defense and protection during missions.</li>
+      <li>Organizes squads of Night Operatives.</li>
+      <li>Handles conflicts directly when aggression is needed.</li>
+      <li>Trains Initiates in discipline and defense skills.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block elite-op">
+    <h2>🔰 Edge Handler <small>(Specialist – Karas)</small></h2>
+    <div class="tier">Tier: Elite Operatives</div>
+    <ul>
+      <li>Assigned to special tasks (support, planning, tech, or small missions).</li>
+      <li>Executes missions that require precision but not command.</li>
+      <li>Works closely under orders from the Iron Vanguard or Field Marshal.</li>
+      <li>Keeps a low profile to avoid suspicion.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block elite-op">
+    <h2>🧭 Eyes of R.A.I.D. <small>(Intelligence Chief – Mahdi)</small></h2>
+    <div class="tier">Tier: Elite Operatives</div>
+    <ul>
+      <li>Gathers information quietly from many sources.</li>
+      <li>Warns R.A.I.D. about threats or changes.</li>
+      <li>Monitors enemy activity (like C.O.M.P.) without being noticed.</li>
+      <li>Shares intel directly with Overwatch and Iron Vanguard.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block elite-op">
+    <h2>🤝 Gatekeeper <small>(Recruiter – Zayne Anzil)</small></h2>
+    <div class="tier">Tier: Elite Operatives</div>
+    <ul>
+      <li>Watches potential recruits silently.</li>
+      <li>Tests their loyalty with small tasks or situations.</li>
+      <li>Recommends Initiates to Overwatch and Iron Vanguard.</li>
+      <li>Guides Initiates through their first steps and the oath.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block elite-op">
+    <h2>✌️ Peacemaker <small>(Currently Vacant)</small></h2>
+    <div class="tier">Tier: Elite Operatives</div>
+    <ul>
+      <li>Creates peace between fellow members.</li>
+      <li>Breaks up fights when necessary between the R.A.I.D family.</li>
+      <li>Overlooks all communication sources and creates peace.</li>
+      <li>Keeps important data and assets stored safely for when required.</li>
+    </ul>
+  </div>
+
+  <div class="rank-block elite-op">
+    <h2>👮‍♂️ Lawyer <small>(Currently Vacant)</small></h2>
+    <div class="tier">Tier: Elite Operatives</div>
+    <ul>
+      <li>Proofreads the articles created by the Overwatch.</li>
+      <li>Spreads rumors to rival teams.</li>
+      <li>Infiltrates enemy bases.</li>
+      <li>Informs the Command Core when important things happen.</li>
+    </ul>
+  </div>
+
+  <!-- CORE SOLDIER -->
+  <div class="rank-block core-soldier">
+    <h2>🪶 Night Operative <small>(Standard Soldier)</small></h2>
+    <div class="tier">Tier: Core Soldiers</div>
+    <ul>
+      <li>Carry out missions assigned by higher ranks.</li>
+      <li>Follow the R.A.I.D. code strictly.</li>
+      <li>Support Shieldbearers, Edge Handlers, and Eyes in their tasks.</li>
+      <li>Train regularly to rise in rank.</li>
+    </ul>
+  </div>
+
+  <!-- RECRUIT -->
+  <div class="rank-block recruit">
+    <h2>🌑 Initiate <small>(Recruit in Training)</small></h2>
+    <div class="tier">Tier: Recruits</div>
+    <ul>
+      <li>Learn the R.A.I.D. oath and rules.</li>
+      <li>Prove loyalty through small assignments.</li>
+      <li>Stay under close observation by the Gatekeeper and other ranks.</li>
+      <li>Await promotion to Night Operative once trusted.</li>
+    </ul>
+  </div>
+
+  <nav>
+    <a href="index.html">⬅ Back to Home</a>
+  </nav>
 </div>
 
-<div class="accordion" id="rankAccordion">
-
-  <!-- Overwatch -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">👁️</span>Overwatch (Founder – Rehan)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Command Core<br>
-      • Create the vision and missions for R.A.I.D.<br>
-      • Approve all major decisions and promotions.<br>
-      • Stay hidden within other groups (like C.O.M.P.) to gather intel.<br>
-      • Give orders to the Iron Vanguard and oversee every operation.<br>
-      • Final authority in disputes and discipline.
-    </div>
-  </div>
-
-  <!-- Iron Vanguard -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">🛡️</span>Iron Vanguard (Second‑in‑Command – Thaahir)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Command Core<br>
-      • Directly commands squads and missions.<br>
-      • Enforces the code of R.A.I.D. daily.<br>
-      • Takes charge when Overwatch is observing from the shadows.<br>
-      • Helps train and guide other members.<br>
-      • Reports mission status and problems to Overwatch.
-    </div>
-  </div>
-
-  <!-- Field Marshal -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">⚔️</span>Field Marshal (Currently Vacant)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Command Core<br>
-      • Tactical coordinator during missions.<br>
-      • Leads large operations involving multiple squads.<br>
-      • Oversees Elite Operatives (Shieldbearer, Edge Handler, Eyes, Gatekeeper).
-    </div>
-  </div>
-
-  <!-- Shieldbearer -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">⚡</span>Shieldbearer (Frontline Lead – Talal)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Elite Operatives<br>
-      • Leads defense and protection during missions.<br>
-      • Organizes squads of Night Operatives.<br>
-      • Handles conflicts directly when aggression is needed.<br>
-      • Trains Initiates in discipline and defense skills.
-    </div>
-  </div>
-
-  <!-- Edge Handler -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">🔰</span>Edge Handler (Specialist – Karas)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Elite Operatives<br>
-      • Assigned to special tasks (support, planning, tech, or small missions).<br>
-      • Executes missions that require precision but not command.<br>
-      • Works closely under orders from the Iron Vanguard or Field Marshal.<br>
-      • Keeps a low profile to avoid suspicion.
-    </div>
-  </div>
-
-  <!-- Eyes -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">🧭</span>Eyes of R.A.I.D. (Intelligence Chief – Mahdi)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Elite Operatives<br>
-      • Gathers information quietly from many sources.<br>
-      • Warns R.A.I.D. about threats or changes.<br>
-      • Monitors enemy activity without being noticed.<br>
-      • Shares intel directly with Overwatch and Iron Vanguard.
-    </div>
-  </div>
-
-  <!-- Gatekeeper -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">🤝</span>Gatekeeper (Recruiter – Zayne Anzil)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Elite Operatives<br>
-      • Watches potential recruits silently.<br>
-      • Tests their loyalty with small tasks or situations.<br>
-      • Recommends Initiates to Overwatch and Iron Vanguard.<br>
-      • Guides Initiates through their first steps and the oath.
-    </div>
-  </div>
-
-  <!-- Peacemaker -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">✌️</span>Peacemaker (Currently Vacant)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Elite Operatives<br>
-      • Creates peace between fellow members.<br>
-      • Breaks up fights when necessary between the R.A.I.D. family.<br>
-      • Overlooks all the communication sources and creates peace.<br>
-      • Keeps important data and assets stored safely.
-    </div>
-  </div>
-
-  <!-- Lawyer -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">👮‍♂️</span>Lawyer (Currently Vacant)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Elite Operatives<br>
-      • Proofreads the articles created by the Overwatch.<br>
-      • Spreads rumors to rival teams.<br>
-      • Infiltration of enemy bases.<br>
-      • Informs the Command Core team when important things happen.
-    </div>
-  </div>
-
-  <!-- Night Operative -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">🪶</span>Night Operative (Standard Soldier)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Core Soldiers<br>
-      • Carry out missions assigned by higher ranks.<br>
-      • Follow the R.A.I.D. code strictly.<br>
-      • Support Shieldbearers, Edge Handlers, and Eyes in their tasks.<br>
-      • Train regularly to rise in rank.
-    </div>
-  </div>
-
-  <!-- Initiate -->
-  <div class="accordion-item">
-    <div class="accordion-header"><span class="emoji">🌑</span>Initiate (Recruit in Training)</div>
-    <div class="accordion-content">
-      <strong>Tier:</strong> Recruits<br>
-      • Learn the R.A.I.D. oath and rules.<br>
-      • Prove loyalty through small assignments.<br>
-      • Stay under close observation by the Gatekeeper and other ranks.<br>
-      • Await promotion to Night Operative once trusted.
-    </div>
-  </div>
-
-</div>
-
-<a class="back-home" href="index.html">⬅ Back to Home</a>
-
-<footer>
-  <p><strong>Disclaimer:</strong> R.A.I.D. and its content are entirely fictional, for creative storytelling and world‑building.</p>
-</footer>
+<!-- 🎵 Hover sound -->
+<audio id="hover-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9e2213c1d0.mp3?filename=click-124467.mp3" preload="auto"></audio>
 
 <script>
-  // Accordion toggle
-  document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-      header.parentElement.classList.toggle('active');
-    });
+// play sound when hovering over rank blocks
+document.querySelectorAll('.rank-block').forEach(block=>{
+  block.addEventListener('mouseenter', ()=>{
+    const sound = document.getElementById('hover-sound');
+    sound.currentTime = 0;
+    sound.play();
   });
-
-  // Search filter
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', function(){
-    const filter = this.value.toLowerCase();
-    document.querySelectorAll('.accordion-item').forEach(item=>{
-      const text = item.querySelector('.accordion-header').innerText.toLowerCase();
-      item.style.display = text.includes(filter) ? '' : 'none';
-    });
-  });
+});
 </script>
 
 </body>

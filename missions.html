@@ -1,62 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Missions - R.A.I.D.</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212; /* dark background */
-      color: #ffffff;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Missions – R.A.I.D.</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite, fadeInBody 1s ease forwards;
+    opacity: 0;
+    text-align: center;
+  }
+
+  @keyframes fadeInBody {
+    to { opacity: 1; }
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5em;
+    margin-top: 30px;
+    text-shadow: 0 0 15px #fff, 0 0 30px #00ffe0, 0 0 45px #00ffe0;
+    animation: pulseGlow 2s infinite alternate;
+  }
+
+  @keyframes pulseGlow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px #00ffe0; }
+    to { text-shadow: 0 0 20px #fff, 0 0 40px #00ffe0; }
+  }
+
+  p {
+    max-width: 800px;
+    margin: 15px auto 30px;
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+
+  .chat-box {
+    margin: 20px auto;
+    max-width: 500px;
+    height: 400px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+  }
+
+  .back-home {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+  }
+  .back-home:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+  }
+
+  footer {
+    margin-top: 50px;
+    padding: 15px;
+    background: rgba(26,26,26,0.8);
+    font-size: 0.85em;
+    color: #bbb;
+  }
+  @media (min-width: 768px) {
+    footer {
+      position: fixed;
+      right: 0;
+      bottom: 20px;
+      width: 250px;
+      text-align: left;
+      background: rgba(26,26,26,0.7);
+      padding: 10px;
+      border-radius: 8px 0 0 8px;
+      box-shadow: -3px 0 10px rgba(255,255,255,0.3);
     }
-    h1 {
-      margin-top: 30px;
-      font-size: 2em;
-    }
-    p {
-      font-size: 1.1em;
-      max-width: 600px;
-      margin: 10px auto;
-      line-height: 1.6;
-    }
-    .chat-container {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-    }
-    iframe {
-      border: none;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    a {
-      color: #00bfff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <h1>Missions</h1>
-  <p>Chat live with other R.A.I.D. members below! No account is needed. Share ideas, plan missions, and have fun together.</p>
+  <h1>📡 R.A.I.D. Missions</h1>
+  <p>Welcome to the mission operations center. Discuss active missions, plan strategies, and coordinate with other members in real time below:</p>
 
-  <div class="chat-container">
-    <!-- Chatango Embed -->
-    <iframe style="width:350px;height:500px;"
-            src="https://raid-community.chatango.com/"
-            frameborder="0"
-            scrolling="no">
-    </iframe>
+  <!-- Chatango Embed -->
+  <div class="chat-box">
+    <script id="cid0020000413809613552"
+      data-cfasync="false"
+      async
+      src="//st.chatango.com/js/gz/emb.js"
+      style="width:100%;height:100%;">
+      {"handle":"raid-community",
+       "arch":"js",
+       "styles":{
+         "a":"202020",
+         "b":100,
+         "c":"FFFFFF",
+         "d":"FFFFFF",
+         "k":"00ffe0",
+         "l":"00ffe0",
+         "m":"00ffe0",
+         "n":"FFFFFF",
+         "p":"10",
+         "q":"00ffe0",
+         "r":100,
+         "pos":"br",
+         "cv":1,
+         "cvbg":"333333",
+         "cvw":200,
+         "cvh":30,
+         "ticker":1,
+         "fwtickm":1
+       }}
+    </script>
   </div>
 
-  <p style="margin-top: 30px;">
-    <a href="index.html">⬅ Back to Home</a>
-  </p>
+  <a class="back-home" href="index.html">⬅ Back to Home</a>
+
+  <footer>
+    <p><strong>Disclaimer:</strong> This project, including R.A.I.D. and all related content, is <em>entirely fictional</em>. It is a creative storytelling and world‑building project. It does not represent any real organization, group, or activity.</p>
+  </footer>
 </body>
 </html>

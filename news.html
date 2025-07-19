@@ -1,76 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R.A.I.D. - Newsfeed</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R.A.I.D. – Newsfeed</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: linear-gradient(-45deg, #1f1c2c, #928dab, #1f1c2c, #928dab);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite, fadeInBody 1s ease forwards;
+    opacity: 0;
+    overflow-x: hidden;
+  }
+  @keyframes fadeInBody { to { opacity: 1; } }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  header {
+    text-align: center;
+    padding: 30px 15px 10px;
+    position: relative;
+    z-index: 2;
+  }
+  header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5em;
+    margin: 0;
+    color: #00ffe0;
+    text-shadow: 0 0 10px #fff, 0 0 20px #00ffe0, 0 0 30px #00ffe0;
+    animation: pulseGlow 2s infinite alternate;
+  }
+  @keyframes pulseGlow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px #00ffe0; }
+    to { text-shadow: 0 0 20px #fff, 0 0 40px #00ffe0; }
+  }
+
+  .search-box {
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1em;
+    outline: none;
+  }
+
+  .back-button {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+    position: relative;
+  }
+  .back-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+  }
+
+  .news-container {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .news-item {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .news-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .news-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px #00ffe0;
+  }
+  .news-item h2 {
+    margin: 0 0 8px;
+    font-size: 1.4em;
+    color: #00ffe0;
+    font-family: 'Orbitron', sans-serif;
+  }
+  .news-item .date {
+    font-size: 0.9em;
+    color: #bbb;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  footer {
+    margin-top: 50px;
+    padding: 15px;
+    background: rgba(26,26,26,0.8);
+    font-size: 0.85em;
+    color: #bbb;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    footer {
+      position: fixed;
+      right: 0;
+      bottom: 20px;
+      width: 250px;
+      text-align: left;
+      background: rgba(26,26,26,0.7);
+      padding: 10px;
+      border-radius: 8px 0 0 8px;
+      box-shadow: -3px 0 10px rgba(255,255,255,0.3);
     }
-    header {
-      text-align: center;
-      padding: 30px;
-    }
-    header h1 {
-      font-size: 2em;
-      margin: 0;
-      color: #00bfff;
-    }
-    .news-container {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-    .news-item {
-      background: #1e1e1e;
-      border: 2px solid #333;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      transition: transform 0.3s;
-    }
-    .news-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px #00bfff;
-    }
-    .news-item h2 {
-      margin: 0 0 10px;
-      color: #00bfff;
-    }
-    .news-item .date {
-      font-size: 0.9em;
-      color: #bbb;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .back-button {
-      display: inline-block;
-      margin: 20px;
-      padding: 10px 20px;
-      background: #1e1e1e;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      border: 2px solid #444;
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    .back-button:hover {
-      background: #333;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #00bfff;
-    }
-  </style>
+  }
+
+  /* Floating particles */
+  .particles {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .particle {
+    position: absolute;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: floatUp 10s linear infinite;
+  }
+  @keyframes floatUp {
+    from { transform: translateY(100vh) scale(0.5); opacity: 0.8; }
+    to { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+</style>
 </head>
 <body>
+  <div class="particles"></div>
+
   <header>
-    <h1>R.A.I.D. Newsfeed</h1>
-    <a href="index.html" class="back-button">← Back to Home</a>
+    <h1>📰 R.A.I.D. Newsfeed</h1>
+    <a href="index.html" class="back-button">⬅ Back to Home</a>
   </header>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="🔎 Search news...">
+  </div>
 
   <div class="news-container">
     <div class="news-item">
@@ -97,5 +194,49 @@
       <p>The R.A.I.D. home interface now features a typewriter effect and glowing animations for an enhanced experience.</p>
     </div>
   </div>
+
+  <footer>
+    <p><strong>Disclaimer:</strong> This project, including R.A.I.D. and all related content, is <em>entirely fictional</em>. It is a creative storytelling and world‑building project. It does not represent any real organization, group, or activity.</p>
+  </footer>
+
+<script>
+  // Fade-in on scroll
+  const newsItems = document.querySelectorAll('.news-item');
+  function handleScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+    newsItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < triggerBottom) {
+        item.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+
+  // Search filter
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.toLowerCase();
+    newsItems.forEach(item => {
+      const text = item.innerText.toLowerCase();
+      item.style.display = text.includes(term) ? '' : 'none';
+    });
+  });
+
+  // Floating particles
+  const particlesContainer = document.querySelector('.particles');
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    const size = Math.random() * 6 + 2;
+    particle.classList.add('particle');
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.animationDuration = `${5 + Math.random() * 5}s`;
+    particle.style.animationDelay = `${Math.random() * 5}s`;
+    particlesContainer.appendChild(particle);
+  }
+</script>
 </body>
 </html>

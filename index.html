@@ -7,187 +7,70 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #121212;
+      color: #ffffff;
       margin: 0;
       padding: 0;
       text-align: center;
-      color: #ffffff;
-      background: linear-gradient(-45deg, #121212, #1a1a1a, #121212, #000000);
-      background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
     }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .logo {
       margin-top: 30px;
       max-width: 200px;
       height: auto;
-      animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0% { filter: drop-shadow(0 0 0px #ff4d4d); }
-      50% { filter: drop-shadow(0 0 15px #ff4d4d); }
-      100% { filter: drop-shadow(0 0 0px #ff4d4d); }
-    }
-
     h1 {
       margin-top: 10px;
       font-size: 2em;
-      overflow: hidden;
       white-space: nowrap;
-      border-right: 3px solid #ff4d4d;
-      width: 0;
-      margin-left: auto;
-      margin-right: auto;
-      animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
+      overflow: hidden;
+      border-right: .15em solid #fff; /* cursor effect */
     }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 15ch; }
-    }
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
     p {
       margin-top: 10px;
       font-size: 1em;
     }
 
     .button-container {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 15px;
-      padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255,77,77,0.3);
+      max-width: 350px;
+      padding: 0 10px;
+    }
+
+    @media (min-width: 768px) {
+      .button-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        max-width: 800px;
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .button-container {
+        max-width: 1000px;
+        gap: 25px;
+      }
     }
 
     .nav-button {
       display: inline-block;
-      padding: 15px 30px;
+      padding: 15px 20px;
       background: #1e1e1e;
       color: #ffffff;
       text-decoration: none;
       border-radius: 8px;
       font-size: 1.1em;
       font-weight: bold;
-      width: 250px;
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
       border: 2px solid #444;
       text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
     }
     .nav-button:hover {
       background: #333;
       transform: scale(1.05);
-      box-shadow: 0 0 15px #ff4d4d, 0 0 30px #ff8080;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .nav-button:nth-child(1) { animation-delay: 0.2s; }
-    .nav-button:nth-child(2) { animation-delay: 0.4s; }
-    .nav-button:nth-child(3) { animation-delay: 0.6s; }
-    .nav-button:nth-child(4) { animation-delay: 0.8s; }
-    .nav-button:nth-child(5) { animation-delay: 1s; }
-    .nav-button:nth-child(6) { animation-delay: 1.2s; }
-    .nav-button:nth-child(7) { animation-delay: 1.4s; }
-    .nav-button:nth-child(8) { animation-delay: 1.6s; }
-    .nav-button:nth-child(9) { animation-delay: 1.8s; }
-
-    /* Fancy gradient text styles for each button */
-    .fancy-red {
-      background: linear-gradient(90deg, #ff4d4d, #ff8080);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(255, 77, 77, 0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-blue {
-      background: linear-gradient(90deg, #4db8ff, #80d4ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(77,184,255,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-gold {
-      background: linear-gradient(90deg, #ffd700, #ffb347);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(255,215,0,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-green {
-      background: linear-gradient(90deg, #00ff99, #33ffcc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(0,255,153,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-purple {
-      background: linear-gradient(90deg, #bf00ff, #e066ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(191,0,255,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-orange {
-      background: linear-gradient(90deg, #ff6600, #ff944d);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(255,102,0,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-cyan {
-      background: linear-gradient(90deg, #00ffff, #66ffff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(0,255,255,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-silver {
-      background: linear-gradient(90deg, #e0e0e0, #a6a6a6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 8px rgba(200,200,200,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    .fancy-rainbow {
-      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: rainbowMove 4s linear infinite;
-      text-shadow: 0 0 8px rgba(255,255,255,0.6);
-      font-family: 'Courier New', monospace;
-    }
-    @keyframes rainbowMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
     footer {
@@ -203,20 +86,21 @@
   <!-- Logo -->
   <img src="raid-logo.PNG" alt="R.A.I.D. Logo" class="logo">
 
-  <h1>Welcome to R.A.I.D.</h1>
+  <!-- Typewriter heading -->
+  <h1 id="typewriter"></h1>
   <p>A fictional storytelling and world‑building project</p>
 
   <!-- Buttons -->
   <div class="button-container">
-    <a href="ranks.html" class="nav-button"><span class="fancy-red">📝 𝓡𝓐𝓝𝓚𝓢</span></a>
-    <a href="missions.html" class="nav-button"><span class="fancy-blue">📱 Missions</span></a>
-    <a href="about.html" class="nav-button"><span class="fancy-gold">🦅 About R.A.I.D.</span></a>
-    <a href="contact.html" class="nav-button"><span class="fancy-green">📩 Contact</span></a>
-    <a href="search.html" class="nav-button"><span class="fancy-purple">🔍 Search for Members</span></a>
-    <a href="rules.html" class="nav-button"><span class="fancy-orange">📖 Rulebook</span></a>
-    <a href="news.html" class="nav-button"><span class="fancy-cyan">📰 Newsfeed</span></a>
-    <a href="secret.html" class="nav-button"><span class="fancy-silver">🔐 ONLY COMMAND CORE</span></a>
-    <a href="quran.html" class="nav-button"><span class="fancy-rainbow">📖 Quran Playlist</span></a>
+    <a href="ranks.html" class="nav-button">📝 𝓡𝓐𝓝𝓚𝓢</a>
+    <a href="missions.html" class="nav-button">📱 Missions</a>
+    <a href="about.html" class="nav-button">🦅 About R.A.I.D.</a>
+    <a href="contact.html" class="nav-button">📩 Contact</a>
+    <a href="search.html" class="nav-button">🔍 Search for Members</a>
+    <a href="rules.html" class="nav-button">📖 Rulebook</a>
+    <a href="news.html" class="nav-button">📰 Newsfeed</a>
+    <a href="secret.html" class="nav-button">🔐 ONLY COMMAND CORE</a>
+    <a href="quran.html" class="nav-button">📖 Quran Playlist</a>
   </div>
 
   <!-- Disclaimer -->
@@ -227,5 +111,25 @@
       It does not represent any real organization, group, or activity.
     </p>
   </footer>
+
+  <!-- Typewriter Script -->
+  <script>
+    const text = "Welcome to R.A.I.D.";
+    let index = 0;
+    const speed = 150; // typing speed
+    const target = document.getElementById("typewriter");
+
+    function type() {
+      if (index < text.length) {
+        target.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, speed);
+      } else {
+        // Optional: stop cursor blinking
+        target.style.borderRight = 'none';
+      }
+    }
+    type();
+  </script>
 </body>
 </html>
